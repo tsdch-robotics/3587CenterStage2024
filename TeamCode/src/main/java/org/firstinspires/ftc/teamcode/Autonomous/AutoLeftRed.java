@@ -242,7 +242,6 @@ public class AutoLeftRed extends LinearOpMode {
             turnToHeading(TURN_SPEED, -180);
 
 
-
         } else if (left < right && (Math.abs(left - right)) >= 2.0) {
             zone = 2;
             //middle
