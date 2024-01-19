@@ -16,7 +16,6 @@ public class FieldOriented2 extends LinearOpMode {
     /*
 
      * Proportional Integral Derivative Controller
-
      */
     public DcMotor slide;
     public double Kp = 0.02;
