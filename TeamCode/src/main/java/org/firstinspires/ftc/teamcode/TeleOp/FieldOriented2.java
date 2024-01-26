@@ -217,7 +217,7 @@ public class FieldOriented2 extends LinearOpMode {
 
         runMyRobot.doThisThingy(slide, larm, rarm, door, scoringTime, waitingTime, targetMacro);
         //this is where you tell uit what to do
-
+//
 
         // Get joystick inputs from the gamepad
         double drive = -gamepad1.left_stick_y;
