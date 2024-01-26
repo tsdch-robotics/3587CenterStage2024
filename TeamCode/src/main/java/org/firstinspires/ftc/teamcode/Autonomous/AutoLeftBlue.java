@@ -144,7 +144,7 @@ public class AutoLeftBlue extends LinearOpMode {
         // Pose2d startPose = new Pose2d(0, 0, Math.toRadians(0));
 
         //  drive.setPoseEstimate(startPose);
-        AutoFinger = hardwareMap.get(Servo.class, "door");
+        AutoFinger = hardwareMap.get(Servo.class, "AutoFinger");
         AutoFinger.setPosition(0.0);
         AutoFinger.setDirection(Servo.Direction.FORWARD);
 
@@ -226,20 +226,19 @@ public class AutoLeftBlue extends LinearOpMode {
             sleep(800);
             driveStraight(DRIVE_SPEED, -27, 0);
             sleep(800);
-            driveStrafe(DRIVE_SPEED, 8, 0);
+            driveStrafe(DRIVE_SPEED, 7, 0);
             sleep(800);
             AutoFinger.setPosition(0.0);
-            driveStraight(DRIVE_SPEED, 25, 0);
+            driveStraight(DRIVE_SPEED, 24, 0);
             sleep(800);
             turnToHeading(DRIVE_SPEED, 85);
             sleep(1000);
-            driveStraight(DRIVE_SPEED, -30, 85);
-            driveStrafe(DRIVE_SPEED, -7,  90);
+            driveStraight(DRIVE_SPEED, -20, 85);
+            driveStrafe(DRIVE_SPEED, -28,  90);
             driveStraight(DRIVE_SPEED, -10, 90);
-            driveStrafe(DRIVE_SPEED, -25, 90);
+            driveStrafe(DRIVE_SPEED, -34, 90);
             turnToHeading(TURN_SPEED, 180);
-            sleep(700);
-            driveStraight(DRIVE_SPEED, -10, 180);
+
 
         } else if (left < right && (Math.abs(left - right)) >= 1.5) {
             zone = 2;
@@ -247,7 +246,7 @@ public class AutoLeftBlue extends LinearOpMode {
             telemetry.addData("Zone", zone);
             telemetry.addData("Average Left Value", averageLeft);
             telemetry.addData("Average Right Value", averageRight);
-            // telemetry.update();
+            telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
             AutoFinger.setPosition(0.7);
@@ -260,9 +259,9 @@ public class AutoLeftBlue extends LinearOpMode {
             sleep(800);
             turnToHeading(DRIVE_SPEED, 85);
             sleep(800);
-            driveStraight(DRIVE_SPEED, -25, 85);
+            driveStraight(DRIVE_SPEED, -21, 85);
             driveStrafe(DRIVE_SPEED, -30,  90);
-            driveStraight(DRIVE_SPEED, -14, 90);
+            driveStraight(DRIVE_SPEED, -18, 90);
             driveStrafe(DRIVE_SPEED, -29, 90);
             turnToHeading(TURN_SPEED, 180);
 
@@ -270,24 +269,24 @@ public class AutoLeftBlue extends LinearOpMode {
             zone = 3;
             //right
             telemetry.addData("Zone", zone);
-            //    telemetry.update();
+                telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
             AutoFinger.setPosition(0.7);
             sleep(800);
             driveStraight(DRIVE_SPEED, -27, 0);
             sleep(800);
-            turnToHeading(DRIVE_SPEED, 85);
+            turnToHeading(DRIVE_SPEED, -85);
             sleep(1000);
-            driveStraight(DRIVE_SPEED, -7, 85);
+            driveStraight(DRIVE_SPEED, -7, -85);
             AutoFinger.setPosition(0.0);
-            driveStraight(DRIVE_SPEED, 15, 90);
-            turnToHeading(TURN_SPEED, 270);
+            driveStraight(DRIVE_SPEED, 15, -90);
+            turnToHeading(TURN_SPEED, 0);
             sleep(700);
-            driveStraight(DRIVE_SPEED, -28, 270);
-            driveStrafe(DRIVE_SPEED, 19,  270);
-            driveStraight(DRIVE_SPEED, -8, 270);
-            driveStrafe(DRIVE_SPEED, 33, 270);
+            driveStraight(DRIVE_SPEED, -28, 0);
+            driveStrafe(DRIVE_SPEED, 19,  0);
+            driveStraight(DRIVE_SPEED, -8, 0);
+            driveStrafe(DRIVE_SPEED, 33, 0);
             turnToHeading(TURN_SPEED, -180);
 
 
@@ -322,8 +321,8 @@ public class AutoLeftBlue extends LinearOpMode {
         public Mat processFrame(Mat input) {
             Imgproc.cvtColor(input, YCbCr, Imgproc.COLOR_RGB2YCrCb);
 //specific square size
-            Rect leftRect = new Rect(350, 280, 280, 230);
-            Rect rightRect = new Rect(940, 270, 280, 250);//middle is 640
+            Rect leftRect = new Rect(20, 210, 300, 300);
+            Rect rightRect = new Rect(640, 225, 400, 300);//midile is 640
             //changing the above 800 to 640
 
             input.copyTo(outPut);

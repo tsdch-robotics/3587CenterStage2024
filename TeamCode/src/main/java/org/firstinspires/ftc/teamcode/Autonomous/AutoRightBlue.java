@@ -153,15 +153,15 @@ public class AutoRightBlue extends LinearOpMode {
         //larm = hardwareMap.get(Servo.class, "larm");
         //rarm = hardwareMap.get(Servo.class, "rarm");
 
-        //door.setDirection(Servo.Direction.FORWARD);
-        //larm.setDirection(Servo.Direction.REVERSE);
-        //rarm.setDirection(Servo.Direction.FORWARD);
-        //larm.scaleRange(0.0, 1.0);
-        //rarm.scaleRange(0.0, 1.0);
-        //door.setPosition(0.0);
-        //wheel.setPower(0);
-        //larm.setPosition(0.0);
-        //rarm.setPosition(0.0);
+       //door.setDirection(Servo.Direction.FORWARD);
+       //larm.setDirection(Servo.Direction.REVERSE);
+       //rarm.setDirection(Servo.Direction.FORWARD);
+       //larm.scaleRange(0.0, 1.0);
+       //rarm.scaleRange(0.0, 1.0);
+       //door.setPosition(0.0);
+       //wheel.setPower(0);
+       //larm.setPosition(0.0);
+       //rarm.setPosition(0.0);
 
         WebcamName webcamName = hardwareMap.get(WebcamName.class, "webcam1");
         int cameraMonitorViewId = hardwareMap.appContext.getResources()
@@ -229,13 +229,12 @@ public class AutoRightBlue extends LinearOpMode {
             driveStraight(DRIVE_SPEED, 29, 0);
             turnToHeading(DRIVE_SPEED, 85);
             sleep(800);
-            driveStraight(DRIVE_SPEED, -95, 90);
-            driveStrafe(DRIVE_SPEED, -26,  90);
-            driveStraight(DRIVE_SPEED, -8, 90);
+            driveStraight(DRIVE_SPEED, -87, 90);
+            driveStrafe(DRIVE_SPEED, -30,  90);
+            driveStraight(DRIVE_SPEED, -10, 90);
             driveStrafe(DRIVE_SPEED, -29, 90);
             turnToHeading(DRIVE_SPEED, 180);
             sleep(700);
-            driveStraight(DRIVE_SPEED, -10, 180);
 
 
         } else if (left < right && (Math.abs(left - right)) >= 2.2) {
@@ -258,12 +257,12 @@ public class AutoRightBlue extends LinearOpMode {
             turnToHeading(DRIVE_SPEED, 85);
             sleep(1000);
             driveStraight(DRIVE_SPEED, -95, 85);
-            driveStrafe(DRIVE_SPEED, -20,  90);
+            driveStrafe(DRIVE_SPEED, -25,  90);
             driveStraight(DRIVE_SPEED, -8, 90);
-            driveStrafe(DRIVE_SPEED, -33, 90);
+            driveStrafe(DRIVE_SPEED, -40, 90);
+            driveStraight(DRIVE_SPEED, -6,90);
             turnToHeading(DRIVE_SPEED, 180);
             sleep(700);
-            driveStraight(DRIVE_SPEED, -10, 180);
 
         } else {
             zone = 1;
@@ -282,16 +281,17 @@ public class AutoRightBlue extends LinearOpMode {
             driveStrafe(DRIVE_SPEED, -6, 90);
             sleep(800);
             AutoFinger.setPosition(0.0);
+            sleep(700);
             driveStraight(DRIVE_SPEED, 10, 90);
             driveStrafe(DRIVE_SPEED, 32, 90);
             sleep(800);
-            driveStraight(DRIVE_SPEED, -95, 90);
+            driveStraight(DRIVE_SPEED, -90, 90);
             driveStrafe(DRIVE_SPEED, -7,  90);
             driveStraight(DRIVE_SPEED, -8, 90);
-            driveStrafe(DRIVE_SPEED, -25, 90);
+            driveStrafe(DRIVE_SPEED, -30, 90);
             turnToHeading(DRIVE_SPEED, 180);
             sleep(700);
-            driveStraight(DRIVE_SPEED, -10, 180);
+            driveStrafe(DRIVE_SPEED, -10, 180);
 
 
 
