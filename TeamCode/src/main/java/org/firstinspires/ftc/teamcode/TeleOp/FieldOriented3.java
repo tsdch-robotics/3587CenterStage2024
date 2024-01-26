@@ -1,4 +1,5 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -10,22 +11,20 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.TeleOp.ScoringFunctions.TeleOpScoringFunctions;
-
 @TeleOp
-public class FieldOriented2 extends LinearOpMode {
+public class FieldOriented3 extends LinearOpMode {
     /*
 
      * Proportional Integral Derivative Controller
 
      */
-
-    ElapsedTime scoringTime = new ElapsedTime();
-
-    ElapsedTime waitingTime = new ElapsedTime();
-
     public DcMotor slide;
-
+    public double Kp = 0.02;
+    public double Ki = 0;
+    public double Kd = 0;
+    public double integralSum = 0;
+    public double lastError = 0;
+    public final int CUTOFF = 20;
 
     // Elapsed timer class from SDK, please use it, it's epic
     public ElapsedTime timer = new ElapsedTime();
@@ -35,7 +34,6 @@ public class FieldOriented2 extends LinearOpMode {
     public Servo rarm;
     public CRServo wheel;
     public DcMotor intake;
-    public Servo plane;
     boolean isTriggerPressed = false;
 
     private DcMotor frontLeftMotor;
@@ -44,12 +42,6 @@ public class FieldOriented2 extends LinearOpMode {
     private DcMotor rearRightMotor;
     private BNO055IMU imu; // Gyro sensor
     private boolean gyroResetRequested = false;
-
-
-    TeleOpScoringFunctions runMyRobot = new TeleOpScoringFunctions();
-
-    private TeleOpScoringFunctions.robotMachineState targetMacro = TeleOpScoringFunctions.robotMachineState.SLIDE_ZERO;
-
 
     @Override
     public void runOpMode() {
@@ -61,20 +53,16 @@ public class FieldOriented2 extends LinearOpMode {
         door = hardwareMap.get(Servo.class, "door");
         larm = hardwareMap.get(Servo.class, "larm");
         rarm = hardwareMap.get(Servo.class, "rarm");
-        intake = hardwareMap.dcMotor.get("intake");
-        plane = hardwareMap.get(Servo.class, "plane");
+        intake =hardwareMap.dcMotor.get("intake");
         door.setDirection(Servo.Direction.FORWARD);
         larm.setDirection(Servo.Direction.REVERSE);
         rarm.setDirection(Servo.Direction.FORWARD);
-        plane.setDirection(Servo.Direction.FORWARD);
-        plane.scaleRange(0.0, 1.0);
         larm.scaleRange(0.0, 1.0);
         rarm.scaleRange(0.0, 1.0);
         door.setPosition(0.0);
-        wheel.setPower(0.0);
+        wheel.setPower(0);
         larm.setPosition(0.0);
         rarm.setPosition(0.0);
-        plane.setPosition(0.0);
         frontLeftMotor = hardwareMap.dcMotor.get("FL");
         frontRightMotor = hardwareMap.dcMotor.get("FR");
         rearLeftMotor = hardwareMap.dcMotor.get("BL");
@@ -87,7 +75,7 @@ public class FieldOriented2 extends LinearOpMode {
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rearLeftMotor .setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // Initialize the gyro sensor
@@ -101,111 +89,77 @@ public class FieldOriented2 extends LinearOpMode {
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(imuParams);
 
-        scoringTime.startTime();
-        scoringTime.reset();
-        waitingTime.startTime();
-        waitingTime.reset();
-
         waitForStart();
 
-        boolean wasdpad_leftPressed = false;
-        boolean wasdpad_upPressed = false;
-        boolean wasdpad_rightPressed = false;
-        boolean wasdpad_downPressed = false;
-        boolean wasbPressed = false;
-        boolean wasxPressed = false;
-
-        while (opModeIsActive()) {
-            if (gamepad1.dpad_left/* && !wasdpad_leftPressed*/) {
-
-                //debounce time
-
-                waitingTime.reset();
-                targetMacro = TeleOpScoringFunctions.robotMachineState.SLIDE_MIN;
-                //change this
-
+        boolean wasYPressed = false;
+        boolean wasBPressed = false;
+        while(opModeIsActive()) {
+            if(gamepad1.dpad_left && !wasYPressed){
+                controlSlides(400);
+                larm.setPosition(0.75);
+                rarm.setPosition(0.75);
             }
+            wasYPressed = gamepad1.dpad_left;
 
-
-            if (gamepad1.dpad_up /*&& !wasdpad_upPressed*/) {
-
-                waitingTime.reset();
-                targetMacro = TeleOpScoringFunctions.robotMachineState.SLIDE_MID;
-
+            if(gamepad1.dpad_up && !wasYPressed){
+                controlSlides(1200);
+                larm.setPosition(0.75);
+                rarm.setPosition(0.75);
             }
+            wasYPressed = gamepad1.dpad_up;
 
-
-            if (gamepad1.dpad_right /*&& !wasdpad_rightPressed*/) {
-
-
-                waitingTime.reset();
-                targetMacro = TeleOpScoringFunctions.robotMachineState.SLIDE_MAX;
-
+            if(gamepad1.dpad_right && !wasYPressed){
+                controlSlides(1400);
+                larm.setPosition(0.75);
+                rarm.setPosition(0.75);
             }
+            wasYPressed = gamepad1.dpad_right;
 
-            if (gamepad1.dpad_down/*&& !wasdpad_downPressed*/) {
-
-
-                waitingTime.reset();
-                targetMacro = TeleOpScoringFunctions.robotMachineState.SLIDE_ZERO;
-
+            if (gamepad1.dpad_down && !wasBPressed){
+                larm.setPosition(0.0);
+                rarm.setPosition(0.0);
+                sleep(2000);
+                controlSlides(0);
             }
+            wasBPressed = gamepad1.dpad_down;
 
             if (gamepad1.left_trigger > .5) {
-
-                intake.setPower(gamepad1.left_trigger);
-
+                intake.setPower(1);
                 wheel.setPower(-2);
-                //isTriggerPressed = true;
+                isTriggerPressed = true;
 
-            }else if (gamepad1.right_trigger > .5) {
-                //intake.setPower(-1);
-                intake.setPower(-gamepad1.right_trigger);
-                wheel.setPower(3);
-                //isTriggerPressed = true;
+            } else {
+                if (isTriggerPressed) {
+                    intake.setPower(0);
+                    wheel.setPower(0);
+                    isTriggerPressed = false;
+                }
+                if (gamepad1.right_trigger > .5) {
+                    intake.setPower(-1);
+                    wheel.setPower(3);
+                    isTriggerPressed = true;
+                } else {
+                    if (isTriggerPressed) {
+                        intake.setPower(0);
+                        wheel.setPower(0);
+                        isTriggerPressed = false;
+                    }
+                }
+                if (gamepad1.left_bumper) {
+                    door.setPosition(0.0);
 
+                } else {
+                    telemetry.addData("testing", "true");
+                }
+                if (gamepad1.right_bumper) {
+                    door.setPosition(1.0);
 
-            }else {
-
-                intake.setPower(0);
-                wheel.setPower(0);
+                } else {
+                    telemetry.addData("testing2", "true");
+                }
 
             }
 
-
-            if (gamepad1.left_bumper) {
-
-                waitingTime.reset();
-                targetMacro = TeleOpScoringFunctions.robotMachineState.DOOR_OPEN;//0
-
-                //?
-            }
-
-            if (gamepad1.right_bumper) {
-                waitingTime.reset();
-                targetMacro = TeleOpScoringFunctions.robotMachineState.DOOR_CLOSE;//1
-
-            }
-
-
-
-            if (gamepad1.b && !wasbPressed) {
-                plane.setPosition(1.0);
-            }
-
-            wasbPressed = gamepad1.b;
-            if (gamepad1.x && !wasxPressed) {
-                plane.setPosition(0.0);
-            }
-
-
-
-
-
-
-            runMyRobot.doThisThingy(slide, larm, rarm, door, scoringTime, waitingTime, targetMacro);
-            //this is where you tell uit what to do
-            //
 
             // Get joystick inputs from the gamepad
             double drive = -gamepad1.left_stick_y;
@@ -257,9 +211,37 @@ public class FieldOriented2 extends LinearOpMode {
             telemetry.addData("Gyro Heading", heading);
             telemetry.update();
         }
+        sleep(2000);
     }
 
+    public void controlSlides(int setpoint) {
+        while (opModeIsActive() && Math.abs(slide.getCurrentPosition() - setpoint) > CUTOFF) {
 
+            // obtain the encoder position
+            int encoderPosition = slide.getCurrentPosition();
+            // calculate the error
+            double error = setpoint - encoderPosition;
+
+            // rate of change of the error
+            double derivative = (error - lastError) / timer.seconds();
+
+            // sum of all error over time
+            integralSum = integralSum + (error * timer.seconds());
+
+            double out = (Kp * error) + (Ki * integralSum) + (Kd * derivative);
+            out = Range.clip(out, -1, 1);
+
+            slide.setPower(out);
+
+            lastError = error;
+
+            // reset the timer for next time
+            timer.reset();
+        }
+
+        slide.setPower(0);
+
+    }
     private double getHeading() {
         // Get the robot's heading from the gyro sensor
         return imu.getAngularOrientation().firstAngle;

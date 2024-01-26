@@ -20,25 +20,34 @@ public class AnnaPIDslides  {
 
     public void magicPID(DcMotor slide, int setpoint, ElapsedTime timer) {
 
-        // obtain the encoder position
-        int encoderPosition = slide.getCurrentPosition();
-        // calculate the error
-        double error = setpoint - encoderPosition;
+        if(Math.abs(setpoint - slide.getCurrentPosition()) <=200){
+            slide.setPower(0);
+        }else {
 
-        // rate of change of the error
-        double derivative = (error - lastError) / timer.seconds();
 
-        // sum of all error over time
-        integralSum = integralSum + (error * timer.seconds());
+            // obtain the encoder position
+            int encoderPosition = slide.getCurrentPosition();
+            // calculate the error
+            double error = setpoint - encoderPosition;
 
-        double out = (Kp * error) + (Ki * integralSum) + (Kd * derivative);
-        out = Range.clip(out, -1, 1);
+            // rate of change of the error
+            double derivative = (error - lastError) / timer.seconds();
 
-        slide.setPower(out);
+            // sum of all error over time
+            integralSum = integralSum + (error * timer.seconds());
 
-        lastError = error;
+            double out = (Kp * error) + (Ki * integralSum) + (Kd * derivative);
+            out = Range.clip(out, -1, 1);
 
-        // reset the timer for next time
-        timer.reset();
+            slide.setPower(out);
+
+            lastError = error;
+
+            // reset the timer for next time
+            timer.reset();
+
+
+        }
+
     }
 }

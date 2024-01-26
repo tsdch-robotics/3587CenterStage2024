@@ -51,38 +51,40 @@ public class TeleOpScoringFunctions {
 
                 pidController.magicPID(slides, slideMaxPos, PIDtime);
 
-                larm.setPosition(0.75);
-                rarm.setPosition(0.75);
+                if(waitingTime.milliseconds() >= 1800){
 
-                if(waitingTime.milliseconds() >= 200){
-                    door.setPosition(1.0);
+                    larm.setPosition(0.75);
+                    rarm.setPosition(0.75);
                 }
-                //do this
+
+                //door.setPosition(1.0);
+
                 break;
 
             case SLIDE_MID:
 
                 pidController.magicPID(slides, slideMidPos, PIDtime);
 
-                larm.setPosition(0.75);
-                rarm.setPosition(0.75);
+                if(waitingTime.milliseconds() >= 1800){
 
-                if(waitingTime.milliseconds() >= 200){
-                    door.setPosition(1.0);
+                    larm.setPosition(0.75);
+                    rarm.setPosition(0.75);
                 }
-                //do this
+                //door.setPosition(1.0);
+
                 break;
 
             case SLIDE_MIN:
 
                 pidController.magicPID(slides, slideMinPos, PIDtime);
 
-                larm.setPosition(0.75);
-                rarm.setPosition(0.75);
+                if(waitingTime.milliseconds() >= 1800){
 
-                if(waitingTime.milliseconds() >= 200){
-                    door.setPosition(1.0);
+                    larm.setPosition(0.75);
+                    rarm.setPosition(0.75);
                 }
+                door.setPosition(1.0);
+
 
                 break;
             case SLIDE_ZERO:
@@ -92,6 +94,20 @@ public class TeleOpScoringFunctions {
                 larm.setPosition(0.0);
                 rarm.setPosition(0.0);
                 door.setPosition(0.0);
+
+                break;
+
+
+            case DOOR_CLOSE:
+
+                door.setPosition(1.0);
+
+                break;
+
+
+            case DOOR_OPEN:
+
+                door.setPosition(0);
 
                 break;
 
