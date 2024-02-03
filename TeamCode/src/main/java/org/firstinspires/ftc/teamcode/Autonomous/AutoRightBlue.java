@@ -212,12 +212,12 @@ public class AutoRightBlue extends LinearOpMode {
         telemetry.addLine("Returning Values");
         // telemetry.update();
         // Use the average values to determine autonomous steps
-        if (left > right && (Math.abs(left - right)) >= 2.2) {
+        if (left > right && (Math.abs(left - right)) >= 3.2) {
             zone = 2;
             //MIDDLE
             telemetry.addData("Zone", zone);
-            //telemetry.addData("Average Left Value", averageLeft);
-            //telemetry.addData("Average Right Value", averageRight);
+            telemetry.addData("Average Left Value", averageLeft);
+            telemetry.addData("Average Right Value", averageRight);
             telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
@@ -237,12 +237,12 @@ public class AutoRightBlue extends LinearOpMode {
             sleep(700);
 
 
-        } else if (left < right && (Math.abs(left - right)) >= 2.2) {
+        } else if (left < right && (Math.abs(left - right)) >= 3.2) {
             zone = 3;
             //RIGHT
             telemetry.addData("Zone", zone);
-            //telemetry.addData("Average Left Value", averageLeft);
-            //telemetry.addData("Average Right Value", averageRight);
+            telemetry.addData("Average Left Value", averageLeft);
+            telemetry.addData("Average Right Value", averageRight);
             telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
@@ -256,7 +256,7 @@ public class AutoRightBlue extends LinearOpMode {
             sleep(800);
             turnToHeading(DRIVE_SPEED, 85);
             sleep(1000);
-            driveStraight(DRIVE_SPEED, -95, 85);
+            driveStraight(DRIVE_SPEED, -95, 90);
             driveStrafe(DRIVE_SPEED, -25,  90);
             driveStraight(DRIVE_SPEED, -8, 90);
             driveStrafe(DRIVE_SPEED, -40, 90);
@@ -325,8 +325,8 @@ public class AutoRightBlue extends LinearOpMode {
         public Mat processFrame(Mat input) {
             Imgproc.cvtColor(input, YCbCr, Imgproc.COLOR_RGB2YCrCb);
 //specific square size
-            Rect leftRect = new Rect(350, 280, 280, 230);
-            Rect rightRect = new Rect(940, 270, 280, 250);//middle is 640
+            Rect leftRect = new Rect(400, 280, 200, 200);
+            Rect rightRect = new Rect(940, 280, 200, 200);//middle is 640
             //changing the above 800 to 640
 
             input.copyTo(outPut);

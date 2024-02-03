@@ -213,7 +213,7 @@ public class AutoLeftBlue extends LinearOpMode {
         telemetry.addLine("Returning Values");
         // telemetry.update();
         // Use the average values to determine autonomous steps
-        if (left > right && (Math.abs(left - right)) >= 1.5) {
+        if (left > right && (Math.abs(left - right)) >= 3.2) {
             zone = 1;
             //left
             telemetry.addData("Zone", zone);
@@ -240,7 +240,7 @@ public class AutoLeftBlue extends LinearOpMode {
             turnToHeading(TURN_SPEED, 180);
 
 
-        } else if (left < right && (Math.abs(left - right)) >= 1.5) {
+        } else if (left < right && (Math.abs(left - right)) >= 3.2) {
             zone = 2;
             //middle
             telemetry.addData("Zone", zone);
@@ -321,8 +321,8 @@ public class AutoLeftBlue extends LinearOpMode {
         public Mat processFrame(Mat input) {
             Imgproc.cvtColor(input, YCbCr, Imgproc.COLOR_RGB2YCrCb);
 //specific square size
-            Rect leftRect = new Rect(20, 210, 300, 300);
-            Rect rightRect = new Rect(640, 225, 400, 300);//midile is 640
+            Rect leftRect = new Rect(60, 325, 200, 200);
+            Rect rightRect = new Rect(640, 325, 200, 200);//midile is 640
             //changing the above 800 to 640
 
             input.copyTo(outPut);

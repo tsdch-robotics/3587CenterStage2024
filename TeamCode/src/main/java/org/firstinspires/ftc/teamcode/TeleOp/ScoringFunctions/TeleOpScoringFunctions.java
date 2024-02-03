@@ -13,9 +13,9 @@ public class TeleOpScoringFunctions {
 
       //write your pos here, for example:\
 
-        int slideMinPos = 5000;
-        int slideMidPos= 10000;
-        int slideMaxPos = 15000;
+        int slideMinPos = 770;
+        int slideMidPos= 1200;
+        int slideMaxPos = 3400;
         int slideZeroPos = 0;
 
 
@@ -23,7 +23,6 @@ public class TeleOpScoringFunctions {
 
         SLIDE_MIN,
         SLIDE_MID,
-
         SLIDE_MAX,
         SLIDE_ZERO,
 
@@ -51,15 +50,12 @@ public class TeleOpScoringFunctions {
 
                 pidController.magicPID(slides, slideMaxPos, PIDtime);
 
-                if(waitingTime.milliseconds() >= 1800){
-                    larm.setPosition(0.75);
-                    rarm.setPosition(0.75);
+                if(waitingTime.milliseconds() >= 1300){
+                    larm.setPosition(0.7);
+                    rarm.setPosition(0.7);
 
                 }
-                if(waitingTime.milliseconds()>= 3400) {
 
-                    door.setPosition(1.0);
-                }
 
                 break;
 
@@ -67,15 +63,12 @@ public class TeleOpScoringFunctions {
 
                 pidController.magicPID(slides, slideMidPos, PIDtime);
 
-                if(waitingTime.milliseconds() >= 1800){
-                    larm.setPosition(0.75);
-                    rarm.setPosition(0.75);
+                if(waitingTime.milliseconds() >= 1300){
+                    larm.setPosition(0.7);
+                    rarm.setPosition(0.7);
 
                 }
-                if(waitingTime.milliseconds()>= 3400) {
 
-                    door.setPosition(1.0);
-                }
 
                 break;
 
@@ -83,38 +76,41 @@ public class TeleOpScoringFunctions {
 
                 pidController.magicPID(slides, slideMinPos, PIDtime);
 
-                if(waitingTime.milliseconds() >= 1800){
-                    larm.setPosition(0.75);
-                    rarm.setPosition(0.75);
+                if(waitingTime.milliseconds() >= 1300){
+                    larm.setPosition(0.7);
+                    rarm.setPosition(0.7);
 
-                }
-                if(waitingTime.milliseconds()>= 3400) {
-
-                    door.setPosition(1.0);
                 }
 
                 break;
             case SLIDE_ZERO:
+                    larm.setPosition(0.0);
+                    rarm.setPosition(0.0);
+                    door.setPosition(0.0);
 
-                pidController.magicPID(slides, slideZeroPos, PIDtime);
+                if(waitingTime.milliseconds() >= 1300) {
 
-                larm.setPosition(0.0);
-                rarm.setPosition(0.0);
-                door.setPosition(0.0);
+                    pidController.magicPID(slides, slideZeroPos, PIDtime);
+
+                }
+
+
 
                 break;
 
 
             case DOOR_CLOSE:
 
-                door.setPosition(1.0);
+                door.setPosition(0.0);
+                door.setPosition(0.0);
 
                 break;
 
 
             case DOOR_OPEN:
 
-                door.setPosition(0);
+                door.setPosition(1.0);
+                door.setPosition(1.0);
 
                 break;
 

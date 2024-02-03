@@ -64,8 +64,8 @@ public class FieldOriented2 extends LinearOpMode {
         intake = hardwareMap.dcMotor.get("intake");
         plane = hardwareMap.get(Servo.class, "plane");
         door.setDirection(Servo.Direction.FORWARD);
-        larm.setDirection(Servo.Direction.REVERSE);
-        rarm.setDirection(Servo.Direction.FORWARD);
+        larm.setDirection(Servo.Direction.FORWARD);
+        rarm.setDirection(Servo.Direction.REVERSE);
         plane.setDirection(Servo.Direction.FORWARD);
         plane.scaleRange(0.0, 1.0);
         larm.scaleRange(0.0, 1.0);
