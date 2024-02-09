@@ -36,7 +36,6 @@ public class FieldOriented2 extends LinearOpMode {
     public CRServo wheel;
     public DcMotor intake;
     public Servo plane;
-    boolean isTriggerPressed = false;
 
     private DcMotor frontLeftMotor;
     private DcMotor frontRightMotor;
