@@ -73,6 +73,8 @@ public class AutoRightRed extends LinearOpMode {
     private double  targetHeading = 0;
     private double  driveSpeed    = 0;
     private double  turnSpeed     = 0;
+    private double TheSlideSpeed = 0;
+    private double slideSpeed = 0;
     private double  FLSpeed       = 0;
     private double  BLSpeed       = 0;
     private double  FRSpeed       = 0;
@@ -82,6 +84,7 @@ public class AutoRightRed extends LinearOpMode {
     private int  BLTarget  = 0;
     private int  FRTarget   = 0;
     private int  BRTarget   = 0;
+    private int slideTarget = 0;
 
     // For example, use a value of 2.0 for a 12-tooth spur gear driving a 24-tooth spur gear.
     // This is gearing DOWN for less speed and more torque.
@@ -96,6 +99,7 @@ public class AutoRightRed extends LinearOpMode {
     // They can/should be tweaked to suit the specific robot drive train.
     static final double     DRIVE_SPEED             = 0.6;     // Max driving speed for better distance accuracy.
     static final double     TURN_SPEED              = 0.6;     // Max Turn speed to limit turn rate
+    static final double     SLIDE_SPEED              = 0.6;     // Max Turn speed to limit turn rate
     static final double     HEADING_THRESHOLD       = 1.0 ;    // How close must the heading get to the target before moving to next step.
     // Requiring more accuracy (a smaller number) will often make the turn take longer to get into the final position.
     // Define the Proportional control coefficient (or GAIN) for "heading control".
@@ -251,7 +255,7 @@ public class AutoRightRed extends LinearOpMode {
 
            //scoringFunctions.doThisThingy(slide, larm, rarm, door, scoringTime, waitingTime, TeleOpScoringFunctions.robotMachineState.SLIDE_MIN);
             door.setPosition(1.0);
-
+            driveSlides(SLIDE_SPEED, 20);
 
 
             //scoringFunctions.doThisThingy(slide, larm, rarm, door, scoringTime, waitingTime, TeleOpScoringFunctions.robotMachineState.SLIDE_ZERO);
@@ -523,7 +527,53 @@ public class AutoRightRed extends LinearOpMode {
             BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
+    public void driveSlides(double maxSlideSpeed,
+                            double distance) {
 
+        // Ensure that the OpMode is still active
+        if (opModeIsActive()) {
+
+            // Determine new target position, and pass to motor controller
+            int moveCounts = (int)(distance * COUNTS_PER_INCH);
+            slideTarget = slide.getCurrentPosition() + moveCounts;
+
+
+            // Set Target FIRST, then turn on RUN_TO_POSITION
+            slide.setTargetPosition(slideTarget);
+
+
+            slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+            // Set the required driving speed  (must be positive for RUN_TO_POSITION)
+            // Start driving straight, and then enter the control loop
+            maxSlideSpeed = Math.abs(maxSlideSpeed);
+            moveslides(maxSlideSpeed);
+
+            // keep looping while we are still active, and ALL motors are running.
+            while (opModeIsActive() &&
+                    (slide.isBusy())) {
+
+
+                // if driving in reverse, the motor correction also needs to be reversed
+                if (distance < 0)
+                    slideSpeed *= -1.0;
+
+                // Apply the turning correction to the current driving speed.
+                moveslides(slideSpeed);
+
+                // Display drive status for the driver.
+                sendTelemetry(true);
+            }
+
+            // Stop all motion & Turn off RUN_TO_POSITION
+            moveRobot(0, 0);
+            FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
     /**
      *  Spin on the central axis to point in a new direction.
      *  <p>
@@ -653,7 +703,21 @@ public class AutoRightRed extends LinearOpMode {
         FR.setPower(FRSpeed);
         BR.setPower(BRSpeed);
     }
+    public void moveslides(double slid) {
+        TheSlideSpeed = slid;     // save this value as a class member so it can be used by telemetry.
 
+        slideSpeed=slid;
+
+        // Scale speeds down if either one exceeds +/- 1.0;
+        double max = (Math.abs(slideSpeed));
+        if (max > 1.0)
+        {
+            slideSpeed /= max;
+        }
+
+        slide.setPower(slideSpeed);
+
+    }
     /**
      *  Display the various control parameters while driving
      *

@@ -48,6 +48,7 @@ public class AutoLeftBlue extends LinearOpMode {
     public Servo larm;
     public Servo rarm;
     public CRServo wheel;
+    public DcMotor slide;
     private DcMotor FL = null;
     private DcMotor BL = null;
     private DcMotor FR = null;
@@ -60,6 +61,8 @@ public class AutoLeftBlue extends LinearOpMode {
     private double  targetHeading = 0;
     private double  driveSpeed    = 0;
     private double  turnSpeed     = 0;
+    private double TheSlideSpeed = 0;
+    private double slideSpeed = 0;
     private double  FLSpeed       = 0;
     private double  BLSpeed       = 0;
     private double  FRSpeed       = 0;
@@ -69,6 +72,7 @@ public class AutoLeftBlue extends LinearOpMode {
     private int  BLTarget  = 0;
     private int  FRTarget   = 0;
     private int  BRTarget   = 0;
+    private int slideTarget = 0;
 
     // For example, use a value of 2.0 for a 12-tooth spur gear driving a 24-tooth spur gear.
     // This is gearing DOWN for less speed and more torque.
@@ -83,6 +87,7 @@ public class AutoLeftBlue extends LinearOpMode {
     // They can/should be tweaked to suit the specific robot drive train.
     static final double     DRIVE_SPEED             = 0.6;     // Max driving speed for better distance accuracy.
     static final double     TURN_SPEED              = 0.6;     // Max Turn speed to limit turn rate
+    static final double     SLIDE_SPEED              = 0.6;     // Max Turn speed to limit turn rate
     static final double     HEADING_THRESHOLD       = 1.0 ;    // How close must the heading get to the target before moving to next step.
     // Requiring more accuracy (a smaller number) will often make the turn take longer to get into the final position.
     // Define the Proportional control coefficient (or GAIN) for "heading control".
@@ -148,21 +153,25 @@ public class AutoLeftBlue extends LinearOpMode {
         AutoFinger.setPosition(0.0);
         AutoFinger.setDirection(Servo.Direction.FORWARD);
 
-        //intake = hardwareMap.dcMotor.get("intake");
-        //wheel = hardwareMap.crservo.get("wheel");
-        //door = hardwareMap.get(Servo.class, "door");
-        //larm = hardwareMap.get(Servo.class, "larm");
-        //rarm = hardwareMap.get(Servo.class, "rarm");
+        intake = hardwareMap.dcMotor.get("intake");
+        wheel = hardwareMap.crservo.get("wheel");
+        door = hardwareMap.get(Servo.class, "door");
+        larm = hardwareMap.get(Servo.class, "larm");
+        rarm = hardwareMap.get(Servo.class, "rarm");
 
-        //door.setDirection(Servo.Direction.FORWARD);
-        //larm.setDirection(Servo.Direction.REVERSE);
-        //rarm.setDirection(Servo.Direction.FORWARD);
-        //larm.scaleRange(0.0, 1.0);
-        //rarm.scaleRange(0.0, 1.0);
-        //door.setPosition(0.0);
-        //wheel.setPower(0);
-        //larm.setPosition(0.0);
-        //rarm.setPosition(0.0);
+        door.setDirection(Servo.Direction.FORWARD);
+        larm.setDirection(Servo.Direction.REVERSE);
+        rarm.setDirection(Servo.Direction.FORWARD);
+        larm.scaleRange(0.0, 1.0);
+        rarm.scaleRange(0.0, 1.0);
+        door.setPosition(0.0);
+        wheel.setPower(0);
+        larm.setPosition(0.0);
+        rarm.setPosition(0.0);
+
+        slide = hardwareMap.dcMotor.get("slide");
+        slide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        slide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         WebcamName webcamName = hardwareMap.get(WebcamName.class, "webcam1");
         int cameraMonitorViewId = hardwareMap.appContext.getResources()
@@ -236,6 +245,14 @@ public class AutoLeftBlue extends LinearOpMode {
             driveStraight(DRIVE_SPEED, -20, 85);
             driveStrafe(DRIVE_SPEED, -28,  90);
             driveStraight(DRIVE_SPEED, -10, 90);
+            driveSlides(SLIDE_SPEED, 20);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            door.setPosition(1);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            sleep(400);
+            driveSlides(SLIDE_SPEED, -20);
             driveStrafe(DRIVE_SPEED, -34, 90);
             turnToHeading(TURN_SPEED, 180);
 
@@ -272,22 +289,30 @@ public class AutoLeftBlue extends LinearOpMode {
                 telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
-            AutoFinger.setPosition(0.7);
-            sleep(800);
-            driveStraight(DRIVE_SPEED, -27, 0);
-            sleep(800);
-            turnToHeading(DRIVE_SPEED, -85);
-            sleep(1000);
-            driveStraight(DRIVE_SPEED, -7, -85);
-            AutoFinger.setPosition(0.0);
-            driveStraight(DRIVE_SPEED, 15, -90);
-            turnToHeading(TURN_SPEED, 0);
-            sleep(700);
-            driveStraight(DRIVE_SPEED, -28, 0);
-            driveStrafe(DRIVE_SPEED, 19,  0);
-            driveStraight(DRIVE_SPEED, -8, 0);
-            driveStrafe(DRIVE_SPEED, 33, 0);
-            turnToHeading(TURN_SPEED, -180);
+            driveSlides(SLIDE_SPEED, 20);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            door.setPosition(1);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            sleep(400);
+            driveSlides(SLIDE_SPEED, -20);
+            //AutoFinger.setPosition(0.7);
+            //sleep(800);
+            //driveStraight(DRIVE_SPEED, -27, 0);
+            //sleep(800);
+            //turnToHeading(DRIVE_SPEED, -85);
+            //sleep(1000);
+            //driveStraight(DRIVE_SPEED, -7, -85);
+            //AutoFinger.setPosition(0.0);
+            //driveStraight(DRIVE_SPEED, 15, -90);
+            //turnToHeading(TURN_SPEED, 0);
+            //sleep(700);
+            //driveStraight(DRIVE_SPEED, -28, 0);
+            //driveStrafe(DRIVE_SPEED, 19,  0);
+            //driveStraight(DRIVE_SPEED, -8, 0);
+            //driveStrafe(DRIVE_SPEED, 33, 0);
+            //turnToHeading(TURN_SPEED, -180);
 
 
 
@@ -522,7 +547,53 @@ public class AutoLeftBlue extends LinearOpMode {
         // Stop all motion;
         moveRobot(0, 0);
     }
+    public void driveSlides(double maxSlideSpeed,
+                            double distance) {
 
+        // Ensure that the OpMode is still active
+        if (opModeIsActive()) {
+
+            // Determine new target position, and pass to motor controller
+            int moveCounts = (int)(distance * COUNTS_PER_INCH);
+            slideTarget = slide.getCurrentPosition() + moveCounts;
+
+
+            // Set Target FIRST, then turn on RUN_TO_POSITION
+            slide.setTargetPosition(slideTarget);
+
+
+            slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+            // Set the required driving speed  (must be positive for RUN_TO_POSITION)
+            // Start driving straight, and then enter the control loop
+            maxSlideSpeed = Math.abs(maxSlideSpeed);
+            moveslides(maxSlideSpeed);
+
+            // keep looping while we are still active, and ALL motors are running.
+            while (opModeIsActive() &&
+                    (slide.isBusy())) {
+
+
+                // if driving in reverse, the motor correction also needs to be reversed
+                if (distance < 0)
+                    slideSpeed *= -1.0;
+
+                // Apply the turning correction to the current driving speed.
+                moveslides(slideSpeed);
+
+                // Display drive status for the driver.
+                sendTelemetry(true);
+            }
+
+            // Stop all motion & Turn off RUN_TO_POSITION
+            moveRobot(0, 0);
+            FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
     /**
      *  Obtain & hold a heading for a finite amount of time
      *  <p>
@@ -613,7 +684,21 @@ public class AutoLeftBlue extends LinearOpMode {
         FR.setPower(FRSpeed);
         BR.setPower(BRSpeed);
     }
+    public void moveslides(double slid) {
+        TheSlideSpeed = slid;     // save this value as a class member so it can be used by telemetry.
 
+        slideSpeed=slid;
+
+        // Scale speeds down if either one exceeds +/- 1.0;
+        double max = (Math.abs(slideSpeed));
+        if (max > 1.0)
+        {
+            slideSpeed /= max;
+        }
+
+        slide.setPower(slideSpeed);
+
+    }
     /**
      *  Display the various control parameters while driving
      *
