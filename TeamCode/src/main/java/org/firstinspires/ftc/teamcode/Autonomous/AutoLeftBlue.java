@@ -278,7 +278,7 @@ public class AutoLeftBlue extends LinearOpMode {
             sleep(800);
             driveStraight(DRIVE_SPEED, -21, 85);
             driveStrafe(DRIVE_SPEED, -30,  90);
-            driveStraight(DRIVE_SPEED, -20           , 90);
+            driveStraight(DRIVE_SPEED, -20, 90);
             sleep(800);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
