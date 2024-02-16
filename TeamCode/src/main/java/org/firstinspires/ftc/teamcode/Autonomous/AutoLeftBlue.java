@@ -160,8 +160,8 @@ public class AutoLeftBlue extends LinearOpMode {
         rarm = hardwareMap.get(Servo.class, "rarm");
 
         door.setDirection(Servo.Direction.FORWARD);
-        larm.setDirection(Servo.Direction.REVERSE);
-        rarm.setDirection(Servo.Direction.FORWARD);
+        larm.setDirection(Servo.Direction.FORWARD);
+        rarm.setDirection(Servo.Direction.REVERSE);
         larm.scaleRange(0.0, 1.0);
         rarm.scaleRange(0.0, 1.0);
         door.setPosition(0.0);
@@ -248,7 +248,7 @@ public class AutoLeftBlue extends LinearOpMode {
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
-            door.setPosition(1);
+            door.setPosition(1.0);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
             sleep(400);
@@ -266,7 +266,7 @@ public class AutoLeftBlue extends LinearOpMode {
             telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
-            AutoFinger.setPosition(0.7);
+            AutoFinger.setPosition(0.9);
             sleep(800);
             driveStraight(DRIVE_SPEED, -31, 0);
             driveStrafe(DRIVE_SPEED, -3, 0);
@@ -278,7 +278,21 @@ public class AutoLeftBlue extends LinearOpMode {
             sleep(800);
             driveStraight(DRIVE_SPEED, -21, 85);
             driveStrafe(DRIVE_SPEED, -30,  90);
-            driveStraight(DRIVE_SPEED, -18, 90);
+            driveStraight(DRIVE_SPEED, -20           , 90);
+            sleep(800);
+            driveSlides(SLIDE_SPEED, 20);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            sleep(1400);
+            door.setPosition(1.0);
+            sleep(1200);
+            door.setPosition(0.0);
+            sleep(1000  );
+            larm.setPosition(0.0);
+            rarm.setPosition(0.0);
+            sleep(1200);
+            driveSlides(SLIDE_SPEED,-20);
+            sleep(1000);
             driveStrafe(DRIVE_SPEED, -29, 90);
             turnToHeading(TURN_SPEED, 180);
 
@@ -289,14 +303,16 @@ public class AutoLeftBlue extends LinearOpMode {
                 telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
-            driveSlides(SLIDE_SPEED, 20);
+            //driveSlides(SLIDE_SPEED, 20);
+            //holdHeading(TURN_SPEED, 0, 1.0);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
-            door.setPosition(1);
-            larm.setPosition(0.7);
-            rarm.setPosition(0.7);
-            sleep(400);
-            driveSlides(SLIDE_SPEED, -20);
+            //holdHeading(TURN_SPEED, 0, 1.0);
+            //door.setPosition(1.0);
+            //holdHeading(TURN_SPEED, 0, 1.0);
+            //scoreDown();
+            //holdHeading(TURN_SPEED, 0, 1.0);
+            //driveSlides(SLIDE_SPEED, -20);
             //AutoFinger.setPosition(0.7);
             //sleep(800);
             //driveStraight(DRIVE_SPEED, -27, 0);
@@ -311,6 +327,7 @@ public class AutoLeftBlue extends LinearOpMode {
             //driveStraight(DRIVE_SPEED, -28, 0);
             //driveStrafe(DRIVE_SPEED, 19,  0);
             //driveStraight(DRIVE_SPEED, -8, 0);
+            //at board
             //driveStrafe(DRIVE_SPEED, 33, 0);
             //turnToHeading(TURN_SPEED, -180);
 
@@ -396,6 +413,7 @@ public class AutoLeftBlue extends LinearOpMode {
      *                   0 = fwd. +ve is CCW from fwd. -ve is CW from forward.
      *                   If a relative angle is required, add/subtract from the current robotHeading.
      */
+
     public void driveStraight(double maxDriveSpeed,
                               double distance,
                               double heading) {
@@ -594,6 +612,14 @@ public class AutoLeftBlue extends LinearOpMode {
             BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
+public void scoreUp() {
+    larm.setPosition(0.7);
+    rarm.setPosition(0.7);
+}
+public void scoreDown(){
+    larm.setPosition(0.0);
+    rarm.setPosition(0.0);
+}
     /**
      *  Obtain & hold a heading for a finite amount of time
      *  <p>
