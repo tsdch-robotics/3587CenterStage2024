@@ -248,6 +248,20 @@ public class AutoLeftRed extends LinearOpMode {
             driveStraight(DRIVE_SPEED, -100, -85);
             driveStrafe(DRIVE_SPEED, 37,  -90);
             driveStraight(DRIVE_SPEED, -10, -90);
+            sleep(800);
+            driveSlides(SLIDE_SPEED, 20);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            sleep(1400);
+            door.setPosition(1.0);
+            sleep(1200);
+            door.setPosition(0.0);
+            sleep(1000);
+            larm.setPosition(0.0);
+            rarm.setPosition(0.0);
+            sleep(1200);
+            driveSlides(SLIDE_SPEED,-20);
+            sleep(1000);
             driveStrafe(DRIVE_SPEED, 25, -90);
             turnToHeading(TURN_SPEED, -180);
 
@@ -274,6 +288,20 @@ public class AutoLeftRed extends LinearOpMode {
             driveStraight(DRIVE_SPEED, -95, -90);
             driveStrafe(DRIVE_SPEED, 26,  -90);
             driveStraight(DRIVE_SPEED, -8, -90);
+            sleep(800);
+            driveSlides(SLIDE_SPEED, 20);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            sleep(1400);
+            door.setPosition(1.0);
+            sleep(1200);
+            door.setPosition(0.0);
+            sleep(1000);
+            larm.setPosition(0.0);
+            rarm.setPosition(0.0);
+            sleep(1200);
+            driveSlides(SLIDE_SPEED,-20);
+            sleep(1000);
             driveStrafe(DRIVE_SPEED, 29, -90);
             turnToHeading(TURN_SPEED, -180);
 
@@ -300,6 +328,20 @@ public class AutoLeftRed extends LinearOpMode {
             driveStraight(DRIVE_SPEED, -100, -85);
             driveStrafe(DRIVE_SPEED, 20,  -90);
             driveStraight(DRIVE_SPEED, -8, -90);
+            sleep(800);
+            driveSlides(SLIDE_SPEED, 20);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            sleep(1400);
+            door.setPosition(1.0);
+            sleep(1200);
+            door.setPosition(0.0);
+            sleep(1000);
+            larm.setPosition(0.0);
+            rarm.setPosition(0.0);
+            sleep(1200);
+            driveSlides(SLIDE_SPEED,-20);
+            sleep(1000);
             driveStrafe(DRIVE_SPEED, 33, -90);
             turnToHeading(TURN_SPEED, -180);
 

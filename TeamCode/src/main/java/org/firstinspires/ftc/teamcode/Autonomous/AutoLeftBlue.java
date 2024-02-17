@@ -244,15 +244,20 @@ public class AutoLeftBlue extends LinearOpMode {
             sleep(1000);
             driveStraight(DRIVE_SPEED, -20, 85);
             driveStrafe(DRIVE_SPEED, -28,  90);
-            driveStraight(DRIVE_SPEED, -10, 90);
+            sleep(800);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
+            sleep(1400);
             door.setPosition(1.0);
-            larm.setPosition(0.7);
-            rarm.setPosition(0.7);
-            sleep(400);
-            driveSlides(SLIDE_SPEED, -20);
+            sleep(1200);
+            door.setPosition(0.0);
+            sleep(1000);
+            larm.setPosition(0.0);
+            rarm.setPosition(0.0);
+            sleep(1200);
+            driveSlides(SLIDE_SPEED,-20);
+            sleep(1000);
             driveStrafe(DRIVE_SPEED, -34, 90);
             turnToHeading(TURN_SPEED, 180);
 
@@ -287,7 +292,7 @@ public class AutoLeftBlue extends LinearOpMode {
             door.setPosition(1.0);
             sleep(1200);
             door.setPosition(0.0);
-            sleep(1000  );
+            sleep(1000);
             larm.setPosition(0.0);
             rarm.setPosition(0.0);
             sleep(1200);
@@ -300,40 +305,40 @@ public class AutoLeftBlue extends LinearOpMode {
             zone = 3;
             //right
             telemetry.addData("Zone", zone);
-                telemetry.update();
-
+            telemetry.update();
             //write your Autonomous specific instructions for this spike mark zone
-            //driveSlides(SLIDE_SPEED, 20);
-            //holdHeading(TURN_SPEED, 0, 1.0);
+            AutoFinger.setPosition(0.7);
+            sleep(800);
+            driveStraight(DRIVE_SPEED, -27, 0);
+            sleep(800);
+            turnToHeading(DRIVE_SPEED, -85);
+            sleep(1000);
+            driveStraight(DRIVE_SPEED, -7, -85);
+            AutoFinger.setPosition(0.0);
+            driveStraight(DRIVE_SPEED, 15, -90);
+            turnToHeading(TURN_SPEED, 0);
+            sleep(700);
+            driveStraight(DRIVE_SPEED, -28, 0);
+            driveStrafe(DRIVE_SPEED, 19,  0);
+            driveStraight(DRIVE_SPEED, -8, 0);
+            sleep(800);
+            driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
-            //holdHeading(TURN_SPEED, 0, 1.0);
-            //door.setPosition(1.0);
-            //holdHeading(TURN_SPEED, 0, 1.0);
-            //scoreDown();
-            //holdHeading(TURN_SPEED, 0, 1.0);
-            //driveSlides(SLIDE_SPEED, -20);
-            //AutoFinger.setPosition(0.7);
-            //sleep(800);
-            //driveStraight(DRIVE_SPEED, -27, 0);
-            //sleep(800);
-            //turnToHeading(DRIVE_SPEED, -85);
-            //sleep(1000);
-            //driveStraight(DRIVE_SPEED, -7, -85);
-            //AutoFinger.setPosition(0.0);
-            //driveStraight(DRIVE_SPEED, 15, -90);
-            //turnToHeading(TURN_SPEED, 0);
-            //sleep(700);
-            //driveStraight(DRIVE_SPEED, -28, 0);
-            //driveStrafe(DRIVE_SPEED, 19,  0);
-            //driveStraight(DRIVE_SPEED, -8, 0);
-            //at board
-            //driveStrafe(DRIVE_SPEED, 33, 0);
-            //turnToHeading(TURN_SPEED, -180);
-
-
-
+            sleep(1400);
+            door.setPosition(1.0);
+            sleep(1200);
+            door.setPosition(0.0);
+            sleep(1000);
+            larm.setPosition(0.0);
+            rarm.setPosition(0.0);
+            sleep(1200);
+            driveSlides(SLIDE_SPEED,-20);
+            sleep(1000);
+            driveStrafe(DRIVE_SPEED, 33, 0);
+            turnToHeading(TURN_SPEED, -180);
         }
+
 
 
         telemetry.addData("Path", "Complete");
