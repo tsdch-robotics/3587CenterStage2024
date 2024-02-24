@@ -241,7 +241,7 @@ public class AutoRightRed extends LinearOpMode {
         telemetry.addLine("Returning Values");
         // telemetry.update();
         // Use the average values to determine autonomous steps
-        if (left > right && (Math.abs(left - right)) >= 1.5) {
+        if (left > right && (Math.abs(left - right)) >= 2.2) {
             zone = 2;
             //MIDDLE
 
@@ -252,7 +252,7 @@ public class AutoRightRed extends LinearOpMode {
              telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
-            AutoFinger.setPosition(0.7);
+            AutoFinger.setPosition(0.9);
             sleep(800);
             driveStraight(DRIVE_SPEED, -31, 0);
             driveStrafe(DRIVE_SPEED, -3, 0);
@@ -262,9 +262,9 @@ public class AutoRightRed extends LinearOpMode {
             sleep(800);
             turnToHeading(DRIVE_SPEED, -85);
             sleep(800);
-            driveStraight(DRIVE_SPEED, -25, -85);
-            driveStrafe(DRIVE_SPEED, 31,  -90);
-            driveStraight(DRIVE_SPEED, -14, -90);//At board
+            driveStraight(DRIVE_SPEED, -22, -85);
+            driveStrafe(DRIVE_SPEED, 33,  -90);
+            driveStraight(DRIVE_SPEED, -17, -90);//At board
             sleep(800);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);

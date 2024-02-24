@@ -243,7 +243,8 @@ public class AutoLeftBlue extends LinearOpMode {
             turnToHeading(DRIVE_SPEED, 85);
             sleep(1000);
             driveStraight(DRIVE_SPEED, -20, 85);
-            driveStrafe(DRIVE_SPEED, -28,  90);
+            driveStrafe(DRIVE_SPEED, -23,  90);
+            driveStraight(DRIVE_SPEED, -13, 90);
             sleep(800);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
@@ -286,6 +287,7 @@ public class AutoLeftBlue extends LinearOpMode {
             driveStraight(DRIVE_SPEED, -20, 90);
             sleep(800);
             driveSlides(SLIDE_SPEED, 20);
+            sleep(100);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
             sleep(1400);
@@ -307,21 +309,21 @@ public class AutoLeftBlue extends LinearOpMode {
             telemetry.addData("Zone", zone);
             telemetry.update();
             //write your Autonomous specific instructions for this spike mark zone
-            AutoFinger.setPosition(0.7);
-            sleep(800);
-            driveStraight(DRIVE_SPEED, -27, 0);
-            sleep(800);
-            turnToHeading(DRIVE_SPEED, -85);
-            sleep(1000);
-            driveStraight(DRIVE_SPEED, -7, -85);
-            AutoFinger.setPosition(0.0);
-            driveStraight(DRIVE_SPEED, 15, -90);
-            turnToHeading(TURN_SPEED, 0);
-            sleep(700);
-            driveStraight(DRIVE_SPEED, -28, 0);
-            driveStrafe(DRIVE_SPEED, 19,  0);
-            driveStraight(DRIVE_SPEED, -8, 0);
-            sleep(800);
+            //AutoFinger.setPosition(0.7);
+            //sleep(800);
+            //driveStraight(DRIVE_SPEED, -27, 0);
+            //sleep(800);
+            //turnToHeading(DRIVE_SPEED, -85);
+            //sleep(800);
+            //driveStraight(DRIVE_SPEED, -7, -85);
+            //AutoFinger.setPosition(0.0);
+            //driveStraight(DRIVE_SPEED, 15, -90);
+            //turnToHeading(TURN_SPEED, 90);
+            //sleep(700);
+            //driveStraight(DRIVE_SPEED, -26, 90);
+            //driveStrafe(DRIVE_SPEED, -15,  90);
+            //driveStraight(DRIVE_SPEED, -8, 90);
+            //sleep(800);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
@@ -334,9 +336,9 @@ public class AutoLeftBlue extends LinearOpMode {
             rarm.setPosition(0.0);
             sleep(1200);
             driveSlides(SLIDE_SPEED,-20);
-            sleep(1000);
-            driveStrafe(DRIVE_SPEED, 33, 0);
-            turnToHeading(TURN_SPEED, -180);
+            //sleep(1000);
+            //driveStrafe(DRIVE_SPEED, -27 , 90);
+            //turnToHeading(TURN_SPEED, 180);
         }
 
 
@@ -368,8 +370,8 @@ public class AutoLeftBlue extends LinearOpMode {
         public Mat processFrame(Mat input) {
             Imgproc.cvtColor(input, YCbCr, Imgproc.COLOR_RGB2YCrCb);
 //specific square size
-            Rect leftRect = new Rect(60, 325, 200, 200);
-            Rect rightRect = new Rect(640, 325, 200, 200);//midile is 640
+            Rect leftRect = new Rect(80, 305, 170, 190);
+            Rect rightRect = new Rect(680, 340, 170, 190);//midile is 640
             //changing the above 800 to 640
 
             input.copyTo(outPut);

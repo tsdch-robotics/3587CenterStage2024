@@ -32,7 +32,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
 @Autonomous(group = "drive")
-public class AutoRightRed2 extends LinearOpMode {
+public class AutoLeftRed2 extends LinearOpMode {
     public OpenCvWebcam webcam1 = null;
     public ElapsedTime elapsedTime = new ElapsedTime(); // Add ElapsedTime to track time
     public double totalLeftAvg = 0;
@@ -224,6 +224,49 @@ public class AutoRightRed2 extends LinearOpMode {
         // Use the average values to determine autonomous steps
         if (left > right && (Math.abs(left - right)) >= 3.2) {
             zone = 1;
+            //Left
+            telemetry.addData("Zone", zone);
+            telemetry.addData("Average Left Value", averageLeft);
+            telemetry.addData("Average Right Value", averageRight);
+            telemetry.update();
+
+            //write your Autonomous specific instructions for this spike mark zone
+            driveSlides(SLIDE_SPEED, 20);
+            AutoFinger.setPosition(0.7);
+            sleep(800);
+            driveStraight(DRIVE_SPEED, -27, 0);
+            sleep(800);
+            driveStrafe(DRIVE_SPEED, 8, 0);
+            sleep(800);
+            AutoFinger.setPosition(0.0);
+            driveStraight(DRIVE_SPEED, 25, 0);
+            sleep(800);
+            turnToHeading(DRIVE_SPEED, -85);
+            sleep(1000);
+            driveStraight(DRIVE_SPEED, -100, -85);
+            driveStrafe(DRIVE_SPEED, 37,  -90);
+            driveStraight(DRIVE_SPEED, -10, -90);
+            sleep(800);
+            driveSlides(SLIDE_SPEED, 20);
+            sleep(100);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            sleep(1400);
+            door.setPosition(1.0);
+            sleep(1200);
+            door.setPosition(0.0);
+            sleep(1000);
+            larm.setPosition(0.0);
+            rarm.setPosition(0.0);
+            sleep(1200);
+            driveSlides(SLIDE_SPEED,-20);
+            sleep(1000);
+            driveStrafe(DRIVE_SPEED, 25, -90);
+            turnToHeading(TURN_SPEED, -180);
+
+
+        } else if (left < right && (Math.abs(left - right)) >= 3.2) {
+            zone = 2;
             //middle
             telemetry.addData("Zone", zone);
             telemetry.addData("Average Left Value", averageLeft);
@@ -231,22 +274,21 @@ public class AutoRightRed2 extends LinearOpMode {
             telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
-            AutoFinger.setPosition(0.9);
+            AutoFinger.setPosition(0.7);
             sleep(800);
             driveStraight(DRIVE_SPEED, -31, 0);
-            driveStrafe(DRIVE_SPEED, -3, 0);
+            driveStrafe(DRIVE_SPEED, -5, 0);
             sleep(800);
             AutoFinger.setPosition(0.0);
             driveStraight(DRIVE_SPEED, 28, 0);
             sleep(800);
             turnToHeading(DRIVE_SPEED, -85);
             sleep(800);
-            driveStraight(DRIVE_SPEED, -25, -85);
-            driveStrafe(DRIVE_SPEED, 31,  -90);
-            driveStraight(DRIVE_SPEED, -12, -90);
+            driveStraight(DRIVE_SPEED, -95, -90);
+            driveStrafe(DRIVE_SPEED, 26,  -90);
+            driveStraight(DRIVE_SPEED, -8, -90);
             sleep(800);
             driveSlides(SLIDE_SPEED, 20);
-            sleep(100);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
             sleep(1400);
@@ -263,50 +305,9 @@ public class AutoRightRed2 extends LinearOpMode {
             turnToHeading(TURN_SPEED, -180);
 
 
-        } else if (left < right && (Math.abs(left - right)) >= 3.2) {
+        } else {
             zone = 3;
             //right
-            telemetry.addData("Zone", zone);
-            telemetry.addData("Average Left Value", averageLeft);
-            telemetry.addData("Average Right Value", averageRight);
-            telemetry.update();
-
-            //write your Autonomous specific instructions for this spike mark zone
-            AutoFinger.setPosition(0.9);
-            sleep(800);
-            driveStraight(DRIVE_SPEED, -29, 0);
-            sleep(800);
-            turnToHeading(DRIVE_SPEED, -85);
-            sleep(800);
-            driveStraight(DRIVE_SPEED, 7, -85);
-            AutoFinger.setPosition(0.0);
-            driveStraight(DRIVE_SPEED, -4, -90);
-            driveStrafe(DRIVE_SPEED, -27,-90);
-            sleep(700);
-            driveStraight(DRIVE_SPEED, -28, -90);
-            driveStrafe(DRIVE_SPEED, 19,  -90);
-            driveStraight(DRIVE_SPEED, -12, -90);
-            sleep(800);
-            driveSlides(SLIDE_SPEED, 20);
-            larm.setPosition(0.7);
-            rarm.setPosition(0.7);
-            sleep(1400);
-            door.setPosition(1.0);
-            sleep(1200);
-            door.setPosition(0.0);
-            sleep(1000);
-            larm.setPosition(0.0);
-            rarm.setPosition(0.0);
-            sleep(1200);
-            driveSlides(SLIDE_SPEED,-20);
-            sleep(1000);
-            driveStrafe(DRIVE_SPEED, 38, -90);
-            turnToHeading(TURN_SPEED, -180);
-
-
-        } else {
-            zone = 1;
-            //left
             telemetry.addData("Zone", zone);
             telemetry.addData("Average Left Value", averageLeft);
             telemetry.addData("Average Right Value", averageRight);
@@ -314,23 +315,20 @@ public class AutoRightRed2 extends LinearOpMode {
             //write your Autonomous specific instructions for this spike mark zone
 
             AutoFinger.setPosition(0.7);
-            sleep(600);
+            sleep(800);
             driveStraight(DRIVE_SPEED, -27, 0);
-            sleep(600);
-            turnToHeading(TURN_SPEED, 85);
-            sleep(600);
-            driveStraight(DRIVE_SPEED, -10, 85);
-            driveStraight(DRIVE_SPEED, 3, 85);
-            driveStrafe(DRIVE_SPEED, -6, 85);
-            sleep(600);
+            sleep(800);
+            turnToHeading(DRIVE_SPEED, -85);
+            sleep(1000);
+            driveStraight(DRIVE_SPEED, -7, -85);
             AutoFinger.setPosition(0.0);
-            driveStraight(DRIVE_SPEED, 10, 85);
-            sleep(600);
-            turnToHeading(TURN_SPEED, 270);
-            sleep(600);
-            driveStraight(DRIVE_SPEED, -38.5, 270);
-            driveStrafe(DRIVE_SPEED, 8, 270);
-            sleep(600);
+            driveStraight(DRIVE_SPEED, 15, -85);
+            driveStrafe(DRIVE_SPEED, -27,-85);
+            sleep(1000);
+            driveStraight(DRIVE_SPEED, -100, -85);
+            driveStrafe(DRIVE_SPEED, 20,  -90);
+            driveStraight(DRIVE_SPEED, -8, -90);
+            sleep(800);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
@@ -344,8 +342,8 @@ public class AutoRightRed2 extends LinearOpMode {
             sleep(1200);
             driveSlides(SLIDE_SPEED,-20);
             sleep(1000);
-            driveStrafe(DRIVE_SPEED, 25 , 270);
-            turnToHeading(TURN_SPEED, 180);
+            driveStrafe(DRIVE_SPEED, 33, -90);
+            turnToHeading(TURN_SPEED, -180);
         }
 
 
@@ -377,8 +375,8 @@ public class AutoRightRed2 extends LinearOpMode {
         public Mat processFrame(Mat input) {
             Imgproc.cvtColor(input, YCbCr, Imgproc.COLOR_RGB2YCrCb);
 //specific square size
-            Rect leftRect = new Rect(1, 210, 300, 300);
-            Rect rightRect = new Rect(640, 225, 400, 300);//midile is 640
+            Rect leftRect = new Rect(1, 210, 230, 280);
+            Rect rightRect = new Rect(640, 225, 230, 280);//midile is 640
             //changing the above 800 to 640
 
             input.copyTo(outPut);

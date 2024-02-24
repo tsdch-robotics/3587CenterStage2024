@@ -251,10 +251,13 @@ public class AutoRightRedTest extends LinearOpMode {
             //telemetry.addData("Average Right Value", averageRight);
             telemetry.update();
             //write your Autonomous specific instructions for this spike mark zone
-
-
-            //scoringFunctions.doThisThingy(slide, larm, rarm, door, scoringTime, waitingTime, TeleOpScoringFunctions.robotMachineState.SLIDE_MIN);
             driveSlides(SLIDE_SPEED, 20);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            sleep(800);
+            driveSlides(SLIDE_SPEED, -20);
+            larm.setPosition(0.0);
+            rarm.setPosition(0.0);
 
 
 
@@ -285,6 +288,13 @@ public class AutoRightRedTest extends LinearOpMode {
             //telemetry.addData("Average Left Value", averageLeft);
             //telemetry.addData("Average Right Value", averageRight);
             telemetry.update();
+            driveSlides(SLIDE_SPEED, 20);
+            larm.setPosition(0.7);
+            rarm.setPosition(0.7);
+            sleep(800);
+            driveSlides(SLIDE_SPEED, -20);
+            larm.setPosition(0.0);
+            rarm.setPosition(0.0);
 
             //write your Autonomous specific instructions for this spike mark zone
             //AutoFinger.setPosition(0.7);

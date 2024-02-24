@@ -228,8 +228,6 @@ public class AutoRightBlue extends LinearOpMode {
             telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
-            driveSlides(SLIDE_SPEED, 20);
-
             AutoFinger.setPosition(0.7);
             sleep(800);
             driveStraight(DRIVE_SPEED, -31, 0);

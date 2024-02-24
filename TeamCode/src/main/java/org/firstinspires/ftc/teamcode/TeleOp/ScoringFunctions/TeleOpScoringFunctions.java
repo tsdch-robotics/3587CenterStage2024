@@ -14,7 +14,7 @@ public class TeleOpScoringFunctions {
       //write your pos here, for example:\
 
         int slideMinPos = 770;
-        int slideMidPos= 1200;
+        int slideMidPos= 2000;
         int slideMaxPos = 3400;
         int slideZeroPos = 0;
 
