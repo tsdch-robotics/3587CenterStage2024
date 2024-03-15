@@ -15,6 +15,7 @@ public class TeleOpScoringFunctions {
 
         int slideMinPos = 770;
         int slideMidPos= 2000;
+        int slideMedPos= 2200;
         int slideMaxPos = 3400;
         int slideZeroPos = 0;
 
@@ -23,6 +24,7 @@ public class TeleOpScoringFunctions {
 
         SLIDE_MIN,
         SLIDE_MID,
+        SLIDE_MED,
         SLIDE_MAX,
         SLIDE_ZERO,
 
@@ -62,6 +64,19 @@ public class TeleOpScoringFunctions {
             case SLIDE_MID:
 
                 pidController.magicPID(slides, slideMidPos, PIDtime);
+
+                if(waitingTime.milliseconds() >= 1300){
+                    larm.setPosition(0.7);
+                    rarm.setPosition(0.7);
+
+                }
+
+
+                break;
+
+            case SLIDE_MED:
+
+                pidController.magicPID(slides, slideMedPos, PIDtime);
 
                 if(waitingTime.milliseconds() >= 1300){
                     larm.setPosition(0.7);

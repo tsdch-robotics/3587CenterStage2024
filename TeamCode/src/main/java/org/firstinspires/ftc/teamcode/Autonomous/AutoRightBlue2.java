@@ -85,7 +85,7 @@ public class AutoRightBlue2 extends LinearOpMode {
 
     // These constants define the desired driving/control characteristics
     // They can/should be tweaked to suit the specific robot drive train.
-    static final double     DRIVE_SPEED             = 0.6;     // Max driving speed for better distance accuracy.
+    static final double     DRIVE_SPEED             = 0.7;     // Max driving speed for better distance accuracy.
     static final double     TURN_SPEED              = 0.6;     // Max Turn speed to limit turn rate
     static final double     SLIDE_SPEED              = 0.6;     // Max Turn speed to limit turn rate
     static final double     HEADING_THRESHOLD       = 1.0 ;    // How close must the heading get to the target before moving to next step.
@@ -222,7 +222,7 @@ public class AutoRightBlue2 extends LinearOpMode {
         telemetry.addLine("Returning Values");
         // telemetry.update();
         // Use the average values to determine autonomous steps
-        if (left > right && (Math.abs(left - right)) >= 3.2) {
+        if (left > right && (Math.abs(left - right)) >= 5) {
             zone = 2;
             //middle
             telemetry.addData("Zone", zone);
@@ -261,7 +261,7 @@ public class AutoRightBlue2 extends LinearOpMode {
             sleep(700);
 
 
-        } else if (left < right && (Math.abs(left - right)) >= 3.2) {
+        } else if (left < right && (Math.abs(left - right)) >= 5) {
             zone = 3;
             //right
             telemetry.addData("Zone", zone);
@@ -319,13 +319,13 @@ public class AutoRightBlue2 extends LinearOpMode {
             driveStrafe(DRIVE_SPEED, -6, 90);
             sleep(600);
             AutoFinger.setPosition(0.0);
-            sleep(700);
+            sleep(600);
             driveStraight(DRIVE_SPEED, 10, 90);
             driveStrafe(DRIVE_SPEED, 32, 90);
             sleep(600);
             driveStraight(DRIVE_SPEED, -90, 90);
-            driveStrafe(DRIVE_SPEED, -8,  90);
-            driveStraight(DRIVE_SPEED, -6.25, 90);
+            driveStrafe(DRIVE_SPEED, -25,  90);
+            driveStraight(DRIVE_SPEED, -8, 90);
             sleep(800);
             driveSlides(SLIDE_SPEED, 13);
             larm.setPosition(0.7);
@@ -340,7 +340,7 @@ public class AutoRightBlue2 extends LinearOpMode {
             sleep(1200);
             driveSlides(SLIDE_SPEED,-13);
             sleep(1000);
-            driveStrafe(DRIVE_SPEED, -30, 90);
+            driveStrafe(DRIVE_SPEED, -50, 90);
             turnToHeading(DRIVE_SPEED, 180);
             sleep(700);
         }
@@ -374,8 +374,8 @@ public class AutoRightBlue2 extends LinearOpMode {
         public Mat processFrame(Mat input) {
             Imgproc.cvtColor(input, YCbCr, Imgproc.COLOR_RGB2YCrCb);
 //specific square size
-            Rect leftRect = new Rect(60, 325, 200, 200);
-            Rect rightRect = new Rect(680, 300, 200, 200);//midile is 640
+            Rect leftRect = new Rect(440, 330, 180, 180);
+            Rect rightRect = new Rect(960, 350, 180, 180);//midile is 640
             //changing the above 800 to 640
 
             input.copyTo(outPut);

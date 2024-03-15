@@ -85,7 +85,7 @@ public class AutoLeftRed extends LinearOpMode {
 
     // These constants define the desired driving/control characteristics
     // They can/should be tweaked to suit the specific robot drive train.
-    static final double     DRIVE_SPEED             = 0.6;     // Max driving speed for better distance accuracy.
+    static final double     DRIVE_SPEED             = 0.7;     // Max driving speed for better distance accuracy.
     static final double     TURN_SPEED              = 0.6;     // Max Turn speed to limit turn rate
     static final double     SLIDE_SPEED              = 0.6;     // Max Turn speed to limit turn rate
     static final double     HEADING_THRESHOLD       = 1.0 ;    // How close must the heading get to the target before moving to next step.
@@ -287,7 +287,7 @@ public class AutoLeftRed extends LinearOpMode {
             sleep(800);
             driveStraight(DRIVE_SPEED, -95, -90);
             driveStrafe(DRIVE_SPEED, 26,  -90);
-            driveStraight(DRIVE_SPEED, -8, -90);
+            driveStraight(DRIVE_SPEED, -7, -90);
             sleep(800);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
@@ -375,8 +375,8 @@ public class AutoLeftRed extends LinearOpMode {
         public Mat processFrame(Mat input) {
             Imgproc.cvtColor(input, YCbCr, Imgproc.COLOR_RGB2YCrCb);
 //specific square size
-            Rect leftRect = new Rect(1, 210, 300, 300);
-            Rect rightRect = new Rect(640, 225, 400, 300);//midile is 640
+            Rect leftRect = new Rect(1, 210, 300, 280);
+            Rect rightRect = new Rect(640, 225, 400, 280);//midile is 640
             //changing the above 800 to 640
 
             input.copyTo(outPut);

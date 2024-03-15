@@ -115,7 +115,7 @@ public class FieldOriented2 extends LinearOpMode {
         boolean wasxPressed = false;
 
         while (opModeIsActive()) {
-            if (gamepad1.dpad_left/* && !wasdpad_leftPressed*/) {
+            if (gamepad2.a/* && !wasdpad_leftPressed*/) {
 
                 //debounce time
 
@@ -126,7 +126,7 @@ public class FieldOriented2 extends LinearOpMode {
             }
 
 
-            if (gamepad1.dpad_up /*&& !wasdpad_upPressed*/) {
+            if (gamepad2.x /*&& !wasdpad_upPressed*/) {
 
                 waitingTime.reset();
                 targetMacro = TeleOpScoringFunctions.robotMachineState.SLIDE_MID;
@@ -134,7 +134,7 @@ public class FieldOriented2 extends LinearOpMode {
             }
 
 
-            if (gamepad1.dpad_right /*&& !wasdpad_rightPressed*/) {
+            if (gamepad2.y /*&& !wasdpad_rightPressed*/) {
 
 
                 waitingTime.reset();
@@ -142,7 +142,7 @@ public class FieldOriented2 extends LinearOpMode {
 
             }
 
-            if (gamepad1.dpad_down/*&& !wasdpad_downPressed*/) {
+            if (gamepad2.dpad_down/*&& !wasdpad_downPressed*/) {
 
 
                 waitingTime.reset();
@@ -172,7 +172,7 @@ public class FieldOriented2 extends LinearOpMode {
             }
 
 
-            if (gamepad1.left_bumper) {
+            if (gamepad2.left_bumper) {
 
                 waitingTime.reset();
                 targetMacro = TeleOpScoringFunctions.robotMachineState.DOOR_OPEN;//0
@@ -180,7 +180,7 @@ public class FieldOriented2 extends LinearOpMode {
                 //?
             }
 
-            if (gamepad1.right_bumper) {
+            if (gamepad2.right_bumper) {
                 waitingTime.reset();
                 targetMacro = TeleOpScoringFunctions.robotMachineState.DOOR_CLOSE;//1
 

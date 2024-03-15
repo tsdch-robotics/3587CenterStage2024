@@ -327,7 +327,7 @@ public class AutoLeftRed2 extends LinearOpMode {
             sleep(1000);
             driveStraight(DRIVE_SPEED, -100, -85);
             driveStrafe(DRIVE_SPEED, 20,  -90);
-            driveStraight(DRIVE_SPEED, -8, -90);
+            driveStraight(DRIVE_SPEED, -9, -90);
             sleep(800);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
@@ -375,8 +375,8 @@ public class AutoLeftRed2 extends LinearOpMode {
         public Mat processFrame(Mat input) {
             Imgproc.cvtColor(input, YCbCr, Imgproc.COLOR_RGB2YCrCb);
 //specific square size
-            Rect leftRect = new Rect(1, 210, 230, 280);
-            Rect rightRect = new Rect(640, 225, 230, 280);//midile is 640
+            Rect leftRect = new Rect(80, 340, 160, 140);
+            Rect rightRect = new Rect(680, 340, 160, 140);//middle is 640
             //changing the above 800 to 640
 
             input.copyTo(outPut);
