@@ -172,7 +172,7 @@ public class FieldOriented2 extends LinearOpMode {
             }
 
 
-            if (gamepad2.left_bumper) {
+            if (gamepad1.left_bumper) {
 
                 waitingTime.reset();
                 targetMacro = TeleOpScoringFunctions.robotMachineState.DOOR_OPEN;//0
@@ -180,7 +180,7 @@ public class FieldOriented2 extends LinearOpMode {
                 //?
             }
 
-            if (gamepad2.right_bumper) {
+            if (gamepad1.right_bumper) {
                 waitingTime.reset();
                 targetMacro = TeleOpScoringFunctions.robotMachineState.DOOR_CLOSE;//1
 

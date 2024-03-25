@@ -22,8 +22,6 @@ import com.qualcomm.robotcore.util.ElapsedTime; // Import ElapsedTime
 
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.util.Range;
@@ -32,7 +30,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
 @Autonomous(group = "drive")
-public class AutoLeftBlue extends LinearOpMode {
+public class AutoLeftBlueCorners extends LinearOpMode {
     public OpenCvWebcam webcam1 = null;
     public ElapsedTime elapsedTime = new ElapsedTime(); // Add ElapsedTime to track time
     public double totalLeftAvg = 0;
@@ -232,34 +230,34 @@ public class AutoLeftBlue extends LinearOpMode {
 
             //write your Autonomous specific instructions for this spike mark zone
             AutoFinger.setPosition(0.7);
-            sleep(800);
+            sleep(400);
             driveStraight(DRIVE_SPEED, -27, 0);
-            sleep(800);
+            sleep(400);
             driveStrafe(DRIVE_SPEED, 7, 0);
-            sleep(800);
+            sleep(400);
             AutoFinger.setPosition(0.0);
             driveStraight(DRIVE_SPEED, 24, 0);
-            sleep(800);
+            sleep(400);
             turnToHeading(DRIVE_SPEED, 85);
-            sleep(1000);
-            driveStraight(DRIVE_SPEED, -20, 85);
+            sleep(600);
+            driveStraight(DRIVE_SPEED, -20, 90);
             driveStrafe(DRIVE_SPEED, -23,  90);
             driveStraight(DRIVE_SPEED, -13, 90);
-            sleep(800);
+            sleep(500);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
-            sleep(1400);
-            door.setPosition(1.0);
-            sleep(1200);
-            door.setPosition(0.0);
             sleep(1000);
+            door.setPosition(1.0);
+            sleep(700);
+            door.setPosition(0.0);
+            sleep(900);
             larm.setPosition(0.0);
             rarm.setPosition(0.0);
             sleep(1200);
             driveSlides(SLIDE_SPEED,-20);
-            sleep(1000);
-            driveStrafe(DRIVE_SPEED, -34, 90);
+            sleep(800);
+            driveStrafe(DRIVE_SPEED, 34, 90); // CP
             turnToHeading(TURN_SPEED, 180);
 
 
@@ -273,7 +271,7 @@ public class AutoLeftBlue extends LinearOpMode {
 
             //write your Autonomous specific instructions for this spike mark zone
             AutoFinger.setPosition(0.9);
-            sleep(500);
+            sleep(400);
             driveStraight(DRIVE_SPEED, -31, 0);
             driveStrafe(DRIVE_SPEED, -3, 0);
             sleep(600);
@@ -281,26 +279,26 @@ public class AutoLeftBlue extends LinearOpMode {
             driveStraight(DRIVE_SPEED, 28, 0);
             sleep(500);
             turnToHeading(DRIVE_SPEED, 85);
-            sleep(700);
+            sleep(600);
             driveStraight(DRIVE_SPEED, -21, 90);
             driveStrafe(DRIVE_SPEED, -35,  90);
             driveStraight(DRIVE_SPEED, -21, 90);
-            sleep(600);
+            sleep(500);
             driveSlides(SLIDE_SPEED, 20);
             sleep(100);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
-            sleep(1400);
+            sleep(1000);
             door.setPosition(1.0);
-            sleep(1200);
+            sleep(700);
             door.setPosition(0.0);
             sleep(1000);
             larm.setPosition(0.0);
             rarm.setPosition(0.0);
-            sleep(1200);
-            driveSlides(SLIDE_SPEED,-20);
             sleep(1000);
-            driveStrafe(DRIVE_SPEED, -38, 90);
+            driveSlides(SLIDE_SPEED,-20);
+            sleep(800);
+            driveStrafe(DRIVE_SPEED, 38, 90);//corner
             turnToHeading(TURN_SPEED, 180);
 
         } else {
@@ -310,34 +308,34 @@ public class AutoLeftBlue extends LinearOpMode {
             telemetry.update();
             //write your Autonomous specific instructions for this spike mark zone
             AutoFinger.setPosition(0.7);
-            sleep(800);
+            sleep(400);
             driveStraight(DRIVE_SPEED, -27, 0);
-            sleep(800);
+            sleep(400);
             turnToHeading(DRIVE_SPEED, -85);
-            sleep(800);
+            sleep(400);
             driveStraight(DRIVE_SPEED, -7, -85);
             AutoFinger.setPosition(0.0);
             driveStraight(DRIVE_SPEED, 15, -90);
             turnToHeading(TURN_SPEED, 85);
-            sleep(700);
+            sleep(600);
             driveStraight(DRIVE_SPEED, -26, 90);
             driveStrafe(DRIVE_SPEED, -14,  90);
-            driveStraight(DRIVE_SPEED, -7, 90);
+            driveStraight(DRIVE_SPEED, -6, 90);
             sleep(800);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
-            sleep(1400);
+            sleep(1000);
             door.setPosition(1.0);
-            sleep(1200);
+            sleep(700);
             door.setPosition(0.0);
             sleep(1000);
             larm.setPosition(0.0);
             rarm.setPosition(0.0);
-            sleep(1200);
+            sleep(1000);
             driveSlides(SLIDE_SPEED,-20);
             sleep(1000);
-            driveStrafe(DRIVE_SPEED, -27, 90);//mid park
+            driveStrafe(DRIVE_SPEED, 30, 90);// park corner
             turnToHeading(TURN_SPEED, 180);
 
         }
@@ -620,14 +618,14 @@ public class AutoLeftBlue extends LinearOpMode {
             BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
-public void scoreUp() {
-    larm.setPosition(0.7);
-    rarm.setPosition(0.7);
-}
-public void scoreDown(){
-    larm.setPosition(0.0);
-    rarm.setPosition(0.0);
-}
+    public void scoreUp() {
+        larm.setPosition(0.7);
+        rarm.setPosition(0.7);
+    }
+    public void scoreDown(){
+        larm.setPosition(0.0);
+        rarm.setPosition(0.0);
+    }
     /**
      *  Obtain & hold a heading for a finite amount of time
      *  <p>
