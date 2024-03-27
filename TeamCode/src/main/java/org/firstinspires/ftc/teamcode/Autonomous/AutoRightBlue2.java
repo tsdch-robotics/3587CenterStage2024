@@ -232,23 +232,23 @@ public class AutoRightBlue2 extends LinearOpMode {
 
             //write your Autonomous specific instructions for this spike mark zone
             AutoFinger.setPosition(0.7);
-            sleep(800);
+            sleep(500);
             driveStraight(DRIVE_SPEED, -31, 0);
             AutoFinger.setPosition(0.0);
-            sleep(800);
+            sleep(500);
             driveStraight(DRIVE_SPEED, 29, 0);
             turnToHeading(DRIVE_SPEED, 85);
-            sleep(800);
+            sleep(600);
             driveStraight(DRIVE_SPEED, -87, 90);
             driveStrafe(DRIVE_SPEED, -30,  90);
             driveStraight(DRIVE_SPEED, -10, 90);
-            sleep(800);
+            sleep(600);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
-            sleep(1400);
-            door.setPosition(1.0);
             sleep(1200);
+            door.setPosition(1.0);
+            sleep(1000);
             door.setPosition(0.0);
             sleep(1000);
             larm.setPosition(0.0);
@@ -258,7 +258,6 @@ public class AutoRightBlue2 extends LinearOpMode {
             sleep(1000);
             driveStrafe(DRIVE_SPEED, -29, 90);
             turnToHeading(DRIVE_SPEED, 180);
-            sleep(700);
 
 
         } else if (left < right && (Math.abs(left - right)) >= 5) {
@@ -271,27 +270,26 @@ public class AutoRightBlue2 extends LinearOpMode {
 
             //write your Autonomous specific instructions for this spike mark zone
             AutoFinger.setPosition(0.7);
-            sleep(800);
+            sleep(500);
             driveStraight(DRIVE_SPEED, -27, 0);
             driveStrafe(DRIVE_SPEED, -12, 0);
             AutoFinger.setPosition(0.0);
-            sleep(800);
+            sleep(500);
             driveStraight(DRIVE_SPEED, 25, 0);
-            sleep(800);
             turnToHeading(DRIVE_SPEED, 85);
-            sleep(1000);
+            sleep(600);
             driveStraight(DRIVE_SPEED, -95, 90);
             driveStrafe(DRIVE_SPEED, -25,  90);
             driveStraight(DRIVE_SPEED, -8, 90);
             driveStrafe(DRIVE_SPEED, -40, 90);
-            sleep(800);
+            sleep(600);
             driveSlides(SLIDE_SPEED, 20);
             sleep(100);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
             sleep(1400);
             door.setPosition(1.0);
-            sleep(1200);
+            sleep(1000);
             door.setPosition(0.0);
             sleep(1000);
             larm.setPosition(0.0);
@@ -301,7 +299,6 @@ public class AutoRightBlue2 extends LinearOpMode {
             sleep(1000);
             driveStraight(DRIVE_SPEED, -6,90);
             turnToHeading(DRIVE_SPEED, 180);
-            sleep(700);
 
         } else {
             zone = 1;
@@ -310,29 +307,26 @@ public class AutoRightBlue2 extends LinearOpMode {
             telemetry.update();
             //write your Autonomous specific instructions for this spike mark zone
             AutoFinger.setPosition(0.7);
-            sleep(600);
+            sleep(500);
             driveStraight(DRIVE_SPEED, -27, 0);
             turnToHeading(TURN_SPEED, 85);
             sleep(600);
             driveStraight(DRIVE_SPEED, -8, 90);
             driveStraight(DRIVE_SPEED, 3, 90);
             driveStrafe(DRIVE_SPEED, -6, 90);
-            sleep(600);
             AutoFinger.setPosition(0.0);
-            sleep(600);
             driveStraight(DRIVE_SPEED, 10, 90);
             driveStrafe(DRIVE_SPEED, 32, 90);
-            sleep(600);
             driveStraight(DRIVE_SPEED, -90, 90);
             driveStrafe(DRIVE_SPEED, -25,  90);
             driveStraight(DRIVE_SPEED, -8, 90);
-            sleep(800);
+            sleep(600);
             driveSlides(SLIDE_SPEED, 13);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
-            sleep(1400);
-            door.setPosition(1.0);
             sleep(1200);
+            door.setPosition(1.0);
+            sleep(1000);
             door.setPosition(0.0);
             sleep(1000);
             larm.setPosition(0.0);
@@ -342,7 +336,6 @@ public class AutoRightBlue2 extends LinearOpMode {
             sleep(1000);
             driveStrafe(DRIVE_SPEED, -50, 90);
             turnToHeading(DRIVE_SPEED, 180);
-            sleep(700);
         }
 
 
