@@ -31,6 +31,7 @@ public class FieldOriented2 extends LinearOpMode {
     public ElapsedTime timer = new ElapsedTime();
 
     public Servo door;
+    public Servo wall;
     public Servo larm;
     public Servo rarm;
     public CRServo wheel;
@@ -58,18 +59,21 @@ public class FieldOriented2 extends LinearOpMode {
         slide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         wheel = hardwareMap.crservo.get("wheel");
         door = hardwareMap.get(Servo.class, "door");
+        wall = hardwareMap.get(Servo.class, "wall");
         larm = hardwareMap.get(Servo.class, "larm");
         rarm = hardwareMap.get(Servo.class, "rarm");
         intake = hardwareMap.dcMotor.get("intake");
         plane = hardwareMap.get(Servo.class, "plane");
         door.setDirection(Servo.Direction.FORWARD);
+        wall.setDirection(Servo.Direction.FORWARD);
         larm.setDirection(Servo.Direction.FORWARD);
         rarm.setDirection(Servo.Direction.REVERSE);
-        plane.setDirection(Servo.Direction.FORWARD);
+        plane.setDirection(Servo.Direction.REVERSE);
         plane.scaleRange(0.0, 1.0);
         larm.scaleRange(0.0, 1.0);
         rarm.scaleRange(0.0, 1.0);
         door.setPosition(0.0);
+        wall.setPosition(0.0);
         wheel.setPower(0.0);
         larm.setPosition(0.0);
         rarm.setPosition(0.0);
@@ -189,15 +193,20 @@ public class FieldOriented2 extends LinearOpMode {
 
 
             if (gamepad1.b && !wasbPressed) {
-                plane.setPosition(1.0);
+                wall.setPosition(0.0);
             }
 
             wasbPressed = gamepad1.b;
-            if (gamepad1.x && !wasxPressed) {
+           if (gamepad1.x && !wasxPressed) {
+               wall.setPosition(.3);
+           }
+
+            if (gamepad1.dpad_left && !wasbPressed) {
+                plane.setPosition(1.0);
+            }
+            if (gamepad1.dpad_right && !wasbPressed) {
                 plane.setPosition(0.0);
             }
-
-
 
 
 
