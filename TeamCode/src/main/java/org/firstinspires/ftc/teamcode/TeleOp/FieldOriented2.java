@@ -68,7 +68,7 @@ public class FieldOriented2 extends LinearOpMode {
         wall.setDirection(Servo.Direction.FORWARD);
         larm.setDirection(Servo.Direction.FORWARD);
         rarm.setDirection(Servo.Direction.REVERSE);
-        plane.setDirection(Servo.Direction.REVERSE);
+        plane.setDirection(Servo.Direction.FORWARD);
         plane.scaleRange(0.0, 1.0);
         larm.scaleRange(0.0, 1.0);
         rarm.scaleRange(0.0, 1.0);

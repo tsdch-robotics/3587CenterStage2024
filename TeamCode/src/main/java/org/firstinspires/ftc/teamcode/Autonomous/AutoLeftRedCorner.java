@@ -281,7 +281,7 @@ public class AutoLeftRedCorner extends LinearOpMode {
             sleep(600);
             driveStraight(DRIVE_SPEED, -95, -90);
             driveStrafe(DRIVE_SPEED, 26,  -90);
-            driveStraight(DRIVE_SPEED, -8, -90);
+            driveStraight(DRIVE_SPEED, -6, -90);
             sleep(500);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
