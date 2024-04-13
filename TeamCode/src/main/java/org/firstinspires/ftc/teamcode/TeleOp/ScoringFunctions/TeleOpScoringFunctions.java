@@ -51,7 +51,6 @@ public class TeleOpScoringFunctions {
             case SLIDE_MAX:
 
                 pidController.magicPID(slides, slideMaxPos, PIDtime);
-
                 if(waitingTime.milliseconds() >= 1300){
                     larm.setPosition(0.7);
                     rarm.setPosition(0.7);
@@ -64,12 +63,12 @@ public class TeleOpScoringFunctions {
             case SLIDE_MID:
 
                 pidController.magicPID(slides, slideMidPos, PIDtime);
-
                 if(waitingTime.milliseconds() >= 1300){
                     larm.setPosition(0.7);
                     rarm.setPosition(0.7);
 
                 }
+
 
 
                 break;
@@ -77,12 +76,12 @@ public class TeleOpScoringFunctions {
             case SLIDE_MED:
 
                 pidController.magicPID(slides, slideMedPos, PIDtime);
-
                 if(waitingTime.milliseconds() >= 1300){
                     larm.setPosition(0.7);
                     rarm.setPosition(0.7);
 
                 }
+
 
 
                 break;
@@ -101,7 +100,7 @@ public class TeleOpScoringFunctions {
             case SLIDE_ZERO:
                     larm.setPosition(0.0);
                     rarm.setPosition(0.0);
-                    door.setPosition(0.0);
+
 
                 if(waitingTime.milliseconds() >= 1300) {
 
@@ -124,11 +123,9 @@ public class TeleOpScoringFunctions {
 
             case DOOR_OPEN:
 
-                door.setPosition(1.0);
-                door.setPosition(1.0);
+                door.setPosition(0.5);
 
                 break;
-
         }
 
 

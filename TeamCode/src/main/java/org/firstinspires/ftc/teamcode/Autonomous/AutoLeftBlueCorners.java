@@ -320,7 +320,7 @@ public class AutoLeftBlueCorners extends LinearOpMode {
             sleep(600);
             driveStraight(DRIVE_SPEED, -26, 90);
             driveStrafe(DRIVE_SPEED, -14,  90);
-            driveStraight(DRIVE_SPEED, -6, 90);
+            driveStraight(DRIVE_SPEED, -4, 90);
             sleep(800);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
@@ -335,7 +335,7 @@ public class AutoLeftBlueCorners extends LinearOpMode {
             sleep(1000);
             driveSlides(SLIDE_SPEED,-20);
             sleep(1000);
-            driveStrafe(DRIVE_SPEED, 30, 90);// park corner
+            driveStrafe(DRIVE_SPEED, 60, 90);// park corner
             turnToHeading(TURN_SPEED, 180);
 
         }

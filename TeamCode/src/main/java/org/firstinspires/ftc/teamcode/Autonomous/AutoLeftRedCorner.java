@@ -40,7 +40,7 @@ public class AutoLeftRedCorner extends LinearOpMode {
     public int frameCount = 0;
     public int zone = 0;
     public ExamplePipeline examplePipeline;
-    public Servo AutoFinger;
+    //public Servo AutoFinger;
     DcMotor intake;
     public Servo door;
     public Servo larm;
@@ -83,7 +83,7 @@ public class AutoLeftRedCorner extends LinearOpMode {
 
     // These constants define the desired driving/control characteristics
     // They can/should be tweaked to suit the specific robot drive train.
-    static final double     DRIVE_SPEED             = 0.6;     // Max driving speed for better distance accuracy.
+    static final double     DRIVE_SPEED             = 0.7;     // Max driving speed for better distance accuracy.
     static final double     TURN_SPEED              = 0.6;     // Max Turn speed to limit turn rate
     static final double     SLIDE_SPEED              = 0.6;     // Max Turn speed to limit turn rate
     static final double     HEADING_THRESHOLD       = 1.0 ;    // How close must the heading get to the target before moving to next step.
@@ -147,9 +147,9 @@ public class AutoLeftRedCorner extends LinearOpMode {
         // Pose2d startPose = new Pose2d(0, 0, Math.toRadians(0));
 
         //  drive.setPoseEstimate(startPose);
-        AutoFinger = hardwareMap.get(Servo.class, "AutoFinger");
-        AutoFinger.setPosition(0.0);
-        AutoFinger.setDirection(Servo.Direction.FORWARD);
+       //AutoFinger = hardwareMap.get(Servo.class, "AutoFinger");
+       //AutoFinger.setPosition(0.0);
+       //AutoFinger.setDirection(Servo.Direction.FORWARD);
 
         intake = hardwareMap.dcMotor.get("intake");
         wheel = hardwareMap.crservo.get("wheel");
@@ -229,13 +229,12 @@ public class AutoLeftRedCorner extends LinearOpMode {
             telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
-            driveSlides(SLIDE_SPEED, 20);
-            AutoFinger.setPosition(0.7);
-            sleep(500);
+            //AutoFinger.setPosition(0.7);
+            //sleep(500);
             driveStraight(DRIVE_SPEED, -27, 0);
             sleep(500);
             driveStrafe(DRIVE_SPEED, 8, 0);
-            AutoFinger.setPosition(0.0);
+            //AutoFinger.setPosition(0.0);
             driveStraight(DRIVE_SPEED, 25, 0);
             turnToHeading(DRIVE_SPEED, -85);
             sleep(600);
@@ -250,14 +249,14 @@ public class AutoLeftRedCorner extends LinearOpMode {
             sleep(1200);
             door.setPosition(1.0);
             sleep(1000);
-            door.setPosition(0.0);
-            sleep(1000);
             larm.setPosition(0.0);
             rarm.setPosition(0.0);
             sleep(1000);
             driveSlides(SLIDE_SPEED,-20);
             sleep(1000);
-            driveStrafe(DRIVE_SPEED, 25, -90);
+            door.setPosition(0.0);
+            sleep(300);
+            driveStrafe(DRIVE_SPEED, -25, -90);
             turnToHeading(TURN_SPEED, -180);
 
 
@@ -270,18 +269,18 @@ public class AutoLeftRedCorner extends LinearOpMode {
             telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
-            AutoFinger.setPosition(0.7);
-            sleep(500);
+            //AutoFinger.setPosition(0.7);
+            //sleep(500);
             driveStraight(DRIVE_SPEED, -31, 0);
             driveStrafe(DRIVE_SPEED, -5, 0);
-            sleep(500);
-            AutoFinger.setPosition(0.0);
+            sleep(400);
+            //AutoFinger.setPosition(0.0);
             driveStraight(DRIVE_SPEED, 28, 0);
             turnToHeading(DRIVE_SPEED, -85);
             sleep(600);
-            driveStraight(DRIVE_SPEED, -95, -90);
-            driveStrafe(DRIVE_SPEED, 26,  -90);
-            driveStraight(DRIVE_SPEED, -6, -90);
+            driveStraight(DRIVE_SPEED, -91, -90);
+            driveStrafe(DRIVE_SPEED, 32,  -90);
+            driveStraight(DRIVE_SPEED, -8, -90);
             sleep(500);
             driveSlides(SLIDE_SPEED, 20);
             larm.setPosition(0.7);
@@ -289,13 +288,13 @@ public class AutoLeftRedCorner extends LinearOpMode {
             sleep(1000);
             door.setPosition(1.0);
             sleep(1000);
-            door.setPosition(0.0);
-            sleep(1000);
             larm.setPosition(0.0);
             rarm.setPosition(0.0);
             sleep(1000);
             driveSlides(SLIDE_SPEED,-20);
             sleep(1000);
+            door.setPosition(0.0);
+            sleep(300);
             driveStrafe(DRIVE_SPEED, -29, -90);
             turnToHeading(TURN_SPEED, -180);
 
@@ -309,34 +308,34 @@ public class AutoLeftRedCorner extends LinearOpMode {
             telemetry.update();
             //write your Autonomous specific instructions for this spike mark zone
 
-            AutoFinger.setPosition(0.7);
+            //AutoFinger.setPosition(0.7);
             sleep(500);
             driveStraight(DRIVE_SPEED, -27, 0);
             sleep(500);
             turnToHeading(DRIVE_SPEED, -85);
             sleep(600);
             driveStraight(DRIVE_SPEED, -7, -85);
-            AutoFinger.setPosition(0.0);
+            //AutoFinger.setPosition(0.0);
             driveStraight(DRIVE_SPEED, 15, -85);
-            driveStrafe(DRIVE_SPEED, -27,-85);
+            driveStrafe(DRIVE_SPEED, -40,-85);
             driveStraight(DRIVE_SPEED, -100, -85);
-            driveStrafe(DRIVE_SPEED, 20,  -90);
+            driveStrafe(DRIVE_SPEED, 19,  -90);
             driveStraight(DRIVE_SPEED, -9, -90);
             sleep(600);
-            driveSlides(SLIDE_SPEED, 20);
+            driveSlides(SLIDE_SPEED, 19);
             larm.setPosition(0.7);
             rarm.setPosition(0.7);
             sleep(1000);
             door.setPosition(1.0);
-            sleep(1000);
-            door.setPosition(0.0);
             sleep(1000);
             larm.setPosition(0.0);
             rarm.setPosition(0.0);
             sleep(1000);
             driveSlides(SLIDE_SPEED,-20);
             sleep(1000);
-            driveStrafe(DRIVE_SPEED, 33, -90);
+            door.setPosition(0.0);
+            sleep(300);
+            driveStrafe(DRIVE_SPEED, -31, -90);
             turnToHeading(TURN_SPEED, -180);
         }
 
