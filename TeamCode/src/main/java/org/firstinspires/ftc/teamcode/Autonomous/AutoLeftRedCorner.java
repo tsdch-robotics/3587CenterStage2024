@@ -40,7 +40,7 @@ public class AutoLeftRedCorner extends LinearOpMode {
     public int frameCount = 0;
     public int zone = 0;
     public ExamplePipeline examplePipeline;
-    //public Servo AutoFinger;
+    public Servo AutoFinger;
     DcMotor intake;
     public Servo door;
     public Servo larm;
@@ -147,9 +147,9 @@ public class AutoLeftRedCorner extends LinearOpMode {
         // Pose2d startPose = new Pose2d(0, 0, Math.toRadians(0));
 
         //  drive.setPoseEstimate(startPose);
-       //AutoFinger = hardwareMap.get(Servo.class, "AutoFinger");
-       //AutoFinger.setPosition(0.0);
-       //AutoFinger.setDirection(Servo.Direction.FORWARD);
+       AutoFinger = hardwareMap.get(Servo.class, "AutoFinger");
+       AutoFinger.setPosition(0.0);
+       AutoFinger.setDirection(Servo.Direction.FORWARD);
 
         intake = hardwareMap.dcMotor.get("intake");
         wheel = hardwareMap.crservo.get("wheel");
@@ -229,12 +229,12 @@ public class AutoLeftRedCorner extends LinearOpMode {
             telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
-            //AutoFinger.setPosition(0.7);
-            //sleep(500);
+            AutoFinger.setPosition(0.7);
+            sleep(500);
             driveStraight(DRIVE_SPEED, -27, 0);
             sleep(500);
             driveStrafe(DRIVE_SPEED, 8, 0);
-            //AutoFinger.setPosition(0.0);
+            AutoFinger.setPosition(0.0);
             driveStraight(DRIVE_SPEED, 25, 0);
             turnToHeading(DRIVE_SPEED, -85);
             sleep(600);
@@ -269,12 +269,12 @@ public class AutoLeftRedCorner extends LinearOpMode {
             telemetry.update();
 
             //write your Autonomous specific instructions for this spike mark zone
-            //AutoFinger.setPosition(0.7);
-            //sleep(500);
+            AutoFinger.setPosition(0.7);
+            sleep(500);
             driveStraight(DRIVE_SPEED, -31, 0);
             driveStrafe(DRIVE_SPEED, -5, 0);
             sleep(400);
-            //AutoFinger.setPosition(0.0);
+            AutoFinger.setPosition(0.0);
             driveStraight(DRIVE_SPEED, 28, 0);
             turnToHeading(DRIVE_SPEED, -85);
             sleep(600);
@@ -308,14 +308,14 @@ public class AutoLeftRedCorner extends LinearOpMode {
             telemetry.update();
             //write your Autonomous specific instructions for this spike mark zone
 
-            //AutoFinger.setPosition(0.7);
+            AutoFinger.setPosition(0.7);
             sleep(500);
             driveStraight(DRIVE_SPEED, -27, 0);
             sleep(500);
             turnToHeading(DRIVE_SPEED, -85);
             sleep(600);
             driveStraight(DRIVE_SPEED, -7, -85);
-            //AutoFinger.setPosition(0.0);
+            AutoFinger.setPosition(0.0);
             driveStraight(DRIVE_SPEED, 15, -85);
             driveStrafe(DRIVE_SPEED, -40,-85);
             driveStraight(DRIVE_SPEED, -100, -85);
