@@ -190,16 +190,20 @@ public class FieldOriented2 extends LinearOpMode {
 
             }
 
+            if (gamepad2.left_bumper) {
 
+                waitingTime.reset();
+                targetMacro = TeleOpScoringFunctions.robotMachineState.DOOR_OPEN;//0
 
-            if (gamepad1.b && !wasbPressed) {
-                wall.setPosition(0.0);
+                //?
             }
 
-            wasbPressed = gamepad1.b;
-           if (gamepad1.x && !wasxPressed) {
-               wall.setPosition(.3);
-           }
+            if (gamepad2.right_bumper) {
+                waitingTime.reset();
+                targetMacro = TeleOpScoringFunctions.robotMachineState.DOOR_CLOSE;//1
+
+            }
+
 
             if (gamepad1.dpad_left && !wasbPressed) {
                 plane.setPosition(1.0);
